@@ -1,0 +1,473 @@
+fileFormatVersion: 2
+guid: bcc265b6ce580144dad2cec5b377b384
+ModelImporter:
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      74: -5093193607303948332
+    second: Rig - Herring|Rig - HerringAction
+  - first:
+      74: -8993671177387653899
+    second: Rig - Herring|Rig - HerringAction.001
+  - first:
+      74: 1905326749343259419
+    second: Rig - Herring|Rig - HerringAction.002
+  - first:
+      74: -5994587843184236631
+    second: Rig - Herring|Rig - HerringAction.003
+  - first:
+      74: -6084101793431252765
+    second: Rig - Herring.001|Rig - HerringAction
+  - first:
+      74: -3557744253824370450
+    second: Rig - Herring.001|Rig - HerringAction.001
+  - first:
+      74: -6610613371325480812
+    second: Rig - Herring.001|Rig - HerringAction.002
+  - first:
+      74: 1548107403860427048
+    second: Rig - Herring.001|Rig - HerringAction.003
+  - first:
+      74: 8793711180199747068
+    second: Rig - Herring.002|Rig - HerringAction
+  - first:
+      74: -5312365322006776540
+    second: Rig - Herring.002|Rig - HerringAction.001
+  - first:
+      74: -9046335665806148692
+    second: Rig - Herring.002|Rig - HerringAction.002
+  - first:
+      74: -8486818579540044280
+    second: Rig - Herring.002|Rig - HerringAction.003
+  - first:
+      74: -8359557107251048168
+    second: Rig - Herring.003|Rig - HerringAction
+  - first:
+      74: -6638207414956530280
+    second: Rig - Herring.003|Rig - HerringAction.001
+  - first:
+      74: -4394733258231460179
+    second: Rig - Herring.003|Rig - HerringAction.002
+  - first:
+      74: -2627229716285101563
+    second: Rig - Herring.003|Rig - HerringAction.003
+  - first:
+      74: 1892551785926150213
+    second: Rig - Herring.004|Rig - HerringAction
+  - first:
+      74: 6125459690652520539
+    second: Rig - Herring.004|Rig - HerringAction.001
+  - first:
+      74: 4528034258858629438
+    second: Rig - Herring.004|Rig - HerringAction.002
+  - first:
+      74: -4013156118594815882
+    second: Rig - Herring.004|Rig - HerringAction.003
+  - first:
+      74: 1072876919933460004
+    second: Rig - Herring.005|Rig - HerringAction
+  - first:
+      74: 5448126928046224910
+    second: Rig - Herring.005|Rig - HerringAction.001
+  - first:
+      74: 5895964395101738112
+    second: Rig - Herring.005|Rig - HerringAction.002
+  - first:
+      74: -8994741931559749822
+    second: Rig - Herring.005|Rig - HerringAction.003
+  - first:
+      74: -4159579372123533397
+    second: Rig - Herring.006|Rig - HerringAction
+  - first:
+      74: 9058172598661423920
+    second: Rig - Herring.006|Rig - HerringAction.001
+  - first:
+      74: -2537051439633749831
+    second: Rig - Herring.006|Rig - HerringAction.002
+  - first:
+      74: -3443103623098071780
+    second: Rig - Herring.006|Rig - HerringAction.003
+  - first:
+      74: 4062394510311077596
+    second: Rig - Herring.007|Rig - HerringAction
+  - first:
+      74: 8296695118192322683
+    second: Rig - Herring.007|Rig - HerringAction.001
+  - first:
+      74: 7278603090409462885
+    second: Rig - Herring.007|Rig - HerringAction.002
+  - first:
+      74: -5355314088109297914
+    second: Rig - Herring.007|Rig - HerringAction.003
+  - first:
+      74: -7349927366415011994
+    second: Rig - Herring.008|Rig - HerringAction
+  - first:
+      74: 4550698251791608381
+    second: Rig - Herring.008|Rig - HerringAction.001
+  - first:
+      74: -5003038994058551904
+    second: Rig - Herring.008|Rig - HerringAction.002
+  - first:
+      74: -4747893771533161112
+    second: Rig - Herring.008|Rig - HerringAction.003
+  - first:
+      74: -2276347696364831932
+    second: Rig - Herring.009|Rig - HerringAction
+  - first:
+      74: -6283628624808612494
+    second: Rig - Herring.009|Rig - HerringAction.001
+  - first:
+      74: 1001282053251045637
+    second: Rig - Herring.009|Rig - HerringAction.002
+  - first:
+      74: -5668754084527169840
+    second: Rig - Herring.009|Rig - HerringAction.003
+  - first:
+      74: -2188414205012245527
+    second: Rig - Herring.010|Rig - HerringAction
+  - first:
+      74: -4372943847164657706
+    second: Rig - Herring.010|Rig - HerringAction.001
+  - first:
+      74: -8936644357410501218
+    second: Rig - Herring.010|Rig - HerringAction.002
+  - first:
+      74: 8862015198224455998
+    second: Rig - Herring.010|Rig - HerringAction.003
+  - first:
+      74: 6514398407820100599
+    second: Rig - Herring.011|Rig - HerringAction
+  - first:
+      74: -5813032598587654667
+    second: Rig - Herring.011|Rig - HerringAction.001
+  - first:
+      74: 1235090974801414781
+    second: Rig - Herring.011|Rig - HerringAction.002
+  - first:
+      74: -3448774719394769166
+    second: Rig - Herring.011|Rig - HerringAction.003
+  - first:
+      74: 5496964528696008306
+    second: Rig - Herring.012|Rig - HerringAction
+  - first:
+      74: -2552675175192880418
+    second: Rig - Herring.012|Rig - HerringAction.001
+  - first:
+      74: 3603585896808210016
+    second: Rig - Herring.012|Rig - HerringAction.002
+  - first:
+      74: 1311233947418365973
+    second: Rig - Herring.012|Rig - HerringAction.003
+  - first:
+      74: -3213445816349125426
+    second: Rig - Herring.013|Rig - HerringAction
+  - first:
+      74: 8477474183164268852
+    second: Rig - Herring.013|Rig - HerringAction.001
+  - first:
+      74: -4892911239608477543
+    second: Rig - Herring.013|Rig - HerringAction.002
+  - first:
+      74: 2846407351408476767
+    second: Rig - Herring.013|Rig - HerringAction.003
+  - first:
+      74: -3926665239533330084
+    second: Rig - Herring.014|Rig - HerringAction
+  - first:
+      74: 1032551132757994968
+    second: Rig - Herring.014|Rig - HerringAction.001
+  - first:
+      74: -6204962797856225998
+    second: Rig - Herring.014|Rig - HerringAction.002
+  - first:
+      74: 3203773883218401171
+    second: Rig - Herring.014|Rig - HerringAction.003
+  - first:
+      74: 6467180324295111113
+    second: Rig - Herring.015|Rig - HerringAction
+  - first:
+      74: 5447053562899279955
+    second: Rig - Herring.015|Rig - HerringAction.001
+  - first:
+      74: 4093517190373915804
+    second: Rig - Herring.015|Rig - HerringAction.002
+  - first:
+      74: 2619627217045572662
+    second: Rig - Herring.015|Rig - HerringAction.003
+  - first:
+      74: -199620620791762199
+    second: Rig - Herring.016|Rig - HerringAction
+  - first:
+      74: 859853363116598238
+    second: Rig - Herring.016|Rig - HerringAction.001
+  - first:
+      74: 7040415220891643260
+    second: Rig - Herring.016|Rig - HerringAction.002
+  - first:
+      74: 8100677782408514709
+    second: Rig - Herring.016|Rig - HerringAction.003
+  - first:
+      74: 2847772169612295833
+    second: Rig - Herring.017|Rig - HerringAction
+  - first:
+      74: -7312258082720036800
+    second: Rig - Herring.017|Rig - HerringAction.001
+  - first:
+      74: -3528570517710202293
+    second: Rig - Herring.017|Rig - HerringAction.002
+  - first:
+      74: -7844420944761043571
+    second: Rig - Herring.017|Rig - HerringAction.003
+  - first:
+      74: -5433502071226952080
+    second: Rig - Herring.018|Rig - HerringAction
+  - first:
+      74: 4269807788032656914
+    second: Rig - Herring.018|Rig - HerringAction.001
+  - first:
+      74: 197928800675669291
+    second: Rig - Herring.018|Rig - HerringAction.002
+  - first:
+      74: 3876053350945891031
+    second: Rig - Herring.018|Rig - HerringAction.003
+  - first:
+      74: 74035511666821091
+    second: Rig - Herring.019|Rig - HerringAction
+  - first:
+      74: 7048091485667504758
+    second: Rig - Herring.019|Rig - HerringAction.001
+  - first:
+      74: 2146525142610932822
+    second: Rig - Herring.019|Rig - HerringAction.002
+  - first:
+      74: 6008569765509243097
+    second: Rig - Herring.019|Rig - HerringAction.003
+  - first:
+      74: -2589464730745555121
+    second: Rig - Herring.020|Rig - HerringAction
+  - first:
+      74: 4709989562138259877
+    second: Rig - Herring.020|Rig - HerringAction.001
+  - first:
+      74: 8060562431336433178
+    second: Rig - Herring.020|Rig - HerringAction.002
+  - first:
+      74: 736190569155736699
+    second: Rig - Herring.020|Rig - HerringAction.003
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Rig - Herring|Rig - HerringAction
+      takeName: Rig - Herring|Rig - HerringAction
+      internalID: 0
+      firstFrame: 4
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rig - Herring|Rig - HerringAction.001
+      takeName: Rig - Herring|Rig - HerringAction.001
+      internalID: 0
+      firstFrame: 4
+      lastFrame: 22
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rig - Herring|Rig - HerringAction.002
+      takeName: Rig - Herring|Rig - HerringAction.002
+      internalID: 0
+      firstFrame: 4
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rig - Herring|Rig - HerringAction.003
+      takeName: Rig - Herring|Rig - HerringAction.003
+      internalID: 0
+      firstFrame: 4
+      lastFrame: 27
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
