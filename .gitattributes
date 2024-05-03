@@ -24,3 +24,5 @@ metaXRAudioUnity.dll.old0 filter=lfs diff=lfs merge=lfs -text
 Earth2kTexture.png filter=lfs diff=lfs merge=lfs -text
 occlusionCullingData.asset filter=lfs diff=lfs merge=lfs -text
 HerringShoalAxis.prefab filter=lfs diff=lfs merge=lfs -text
+normal.tga filter=lfs diff=lfs merge=lfs -text
+diffuse.tga filter=lfs diff=lfs merge=lfs -text
