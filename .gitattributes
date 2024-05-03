@@ -1,0 +1,26 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+sky-1.png filter=lfs diff=lfs merge=lfs -text
+sky-2.png filter=lfs diff=lfs merge=lfs -text
+sky-3.png filter=lfs diff=lfs merge=lfs -text
+sky-12.png filter=lfs diff=lfs merge=lfs -text
+sky-4.png filter=lfs diff=lfs merge=lfs -text
+sky-5.png filter=lfs diff=lfs merge=lfs -text
+sky-6.png filter=lfs diff=lfs merge=lfs -text
+sky-10.png filter=lfs diff=lfs merge=lfs -text
+sky-11.png filter=lfs diff=lfs merge=lfs -text
+snow_BaseColor.tif filter=lfs diff=lfs merge=lfs -text
+snow_Normal.tif filter=lfs diff=lfs merge=lfs -text
+quest2_controllers_div0.fbx filter=lfs diff=lfs merge=lfs -text
+sky-7.png filter=lfs diff=lfs merge=lfs -text
+sky-8.png filter=lfs diff=lfs merge=lfs -text
+sky-9.png filter=lfs diff=lfs merge=lfs -text
+aerial_ground_rock_ao_4k.png filter=lfs diff=lfs merge=lfs -text
+aerial_ground_rock_nor_4k.png filter=lfs diff=lfs merge=lfs -text
+snow_03_ao_4k.png filter=lfs diff=lfs merge=lfs -text
+snow_03_nor_4k.png filter=lfs diff=lfs merge=lfs -text
+metaXRAudioUnity.dll.old() filter=lfs diff=lfs merge=lfs -text
+metaXRAudioUnity.dll.old0 filter=lfs diff=lfs merge=lfs -text
+Earth2kTexture.png filter=lfs diff=lfs merge=lfs -text
+occlusionCullingData.asset filter=lfs diff=lfs merge=lfs -text
+HerringShoalAxis.prefab filter=lfs diff=lfs merge=lfs -text
