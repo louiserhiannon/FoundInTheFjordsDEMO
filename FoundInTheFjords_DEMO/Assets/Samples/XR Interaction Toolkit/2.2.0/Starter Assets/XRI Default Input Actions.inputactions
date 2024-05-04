@@ -1896,7 +1896,7 @@
                 {
                     "name": "",
                     "id": "70ff7405-dffa-4d6d-85c2-3de640361f66",
-                    "path": "<XRController>{RightHand}/triggerButton",
+                    "path": "<OculusTouchController>{RightHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1907,7 +1907,7 @@
                 {
                     "name": "",
                     "id": "7b686f03-5685-43fa-af51-b12c4730ef53",
-                    "path": "<XRController>{LeftHand}/triggerButton",
+                    "path": "<OculusTouchController>{LeftHand}/triggerPressed",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

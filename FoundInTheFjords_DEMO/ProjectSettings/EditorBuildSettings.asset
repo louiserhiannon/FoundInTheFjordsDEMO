@@ -8,39 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RootMenu.unity
     guid: 5ee362c2ea3cb434aa4820fea8daf52b
-  - enabled: 0
-    path: Assets/Scenes/Intro.unity
-    guid: 585a40df5b61cae4d871aa03f3329646
-  - enabled: 0
-    path: Assets/Scenes/MainMenu.unity
-    guid: 8d8f20c3e415fe8419a963d6455415c5
-  - enabled: 0
-    path: Assets/Scenes/Scene00-Orientation.unity
-    guid: a03caba7e47b87f4d8281d7f50e6a6c9
-  - enabled: 0
-    path: Assets/Scenes/Scene01-Exploration.unity
-    guid: e05332ac8c35fd14abc70c675923072a
-  - enabled: 0
-    path: Assets/Scenes/Scene02-CarouselFeeding.unity
-    guid: ab17a7cd523d317498c7b170bbb170b7
-  - enabled: 0
-    path: Assets/Scenes/Scene03-Locomotion.unity
-    guid: 8f4a54473eb5c9a4983dba7b0ce61977
-  - enabled: 0
-    path: Assets/Scenes/Scene04-Fishing.unity
-    guid: 6a6ec40488b0af841a7a3811b6b149ca
-  - enabled: 0
-    path: Assets/Scenes/Scene04a-MeetScientists.unity
-    guid: d3e21fb112be29f4aa4fa4ba7f1031ef
+  - enabled: 1
+    path: Assets/Scenes/DEMO.unity
+    guid: a27d7df5d6fe68a4baa586790d3aac0e
   - enabled: 1
     path: Assets/Scenes/Scene05-360Zodiac.unity
     guid: eb3211c18e9334d4cb189f79215b88e7
   - enabled: 1
     path: Assets/Scenes/Scene06-CalltoAction.unity
     guid: 35d578d5f7761b944b2b61cca6ec3462
-  - enabled: 1
-    path: Assets/Scenes/DEMO.unity
-    guid: a27d7df5d6fe68a4baa586790d3aac0e
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 4b9a2f27cb90fd844b19008773a93535,
       type: 2}

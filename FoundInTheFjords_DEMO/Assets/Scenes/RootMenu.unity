@@ -4171,7 +4171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ad3cc5186a81a2c499a69be260a21eba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ce13494438b8db4493a89364ba5dc97, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -28779,7 +28779,7 @@ MonoBehaviour:
   - {fileID: 1426179901}
   tailSlapPanel: {fileID: 783177577}
   vibrateDuration: 3
-  maxAmplitude: 0
+  maxAmplitude: 0.1
   amplitudeDecayPeriod: 3
   frequency: 1.5
   hapticLeft: {fileID: 1289998299}
