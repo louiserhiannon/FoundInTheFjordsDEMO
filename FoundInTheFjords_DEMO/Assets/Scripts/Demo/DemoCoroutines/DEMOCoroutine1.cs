@@ -143,16 +143,17 @@ public class DEMOCoroutine1 : MonoBehaviour
         orcasInPlace.Clear();
         OrcaOscillationController.OOC.isOscillating = true;
 
-        
+        momAudioSource.PlayOneShot(voiceoverClips[2]); //this is my favourite thing to do
+
         //yield return new WaitForSeconds(voiceoverClips[1].length / 3);
-        
+
         //yield return new WaitForSeconds(voiceoverClips[1].length);
 
-        
+
         //momAudioSource.PlayOneShot(voiceoverClips[2]);
         //yield return new WaitForSeconds(voiceoverClips[2].length); //might not need
         //Activate carousel when parent box is in far away position
-        while(carouselOceanBox.position.z < 200 || carouselOceanBox.position.z > 210)
+        while (carouselOceanBox.position.z < 200 || carouselOceanBox.position.z > 210)
         {
             yield return null;
         }
@@ -187,7 +188,7 @@ public class DEMOCoroutine1 : MonoBehaviour
         {
             yield return null;
         }
-        momAudioSource.PlayOneShot(voiceoverClips[2]);
+        momAudioSource.PlayOneShot(voiceoverClips[3]);
         StartCoroutine(RotateToCarousel(moveMomToTarget));
         //StartCoroutine(RecentreNora());
         orcaMomAnimator.SetTrigger("Trigger_StopSwim");
@@ -195,18 +196,18 @@ public class DEMOCoroutine1 : MonoBehaviour
         
 
       
-        yield return new WaitForSeconds(voiceoverClips[2].length - 0.5f);
+        yield return new WaitForSeconds(voiceoverClips[3].length - 0.5f);
 
         
         //Play clip 5.2a (if clip is split available)
         //momAudioSource.PlayOneShot(voiceoverClips[4]);
         //yield return new WaitForSeconds(voiceoverClips[4].length);
 
-        yield return new WaitForSeconds(5);
+        //yield return new WaitForSeconds(5);
 
         //Play clip 5.2
-        momAudioSource.PlayOneShot(voiceoverClips[3]);
-        yield return new WaitForSeconds(voiceoverClips[3].length);
+        //momAudioSource.PlayOneShot(voiceoverClips[3]);
+        //yield return new WaitForSeconds(voiceoverClips[3].length);
 
         //Activate grip button
         ActivateControlsDEMO.AC.ActivateTailslapControls();
