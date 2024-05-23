@@ -35,8 +35,8 @@ public class OrcaOscillation : MonoBehaviour
         positionX = transform.position.x;
         positionY = transform.position.y;
         positionZ = transform.position.z;
-        maxXOffset = Random.Range(0.0f, 1f);
-        maxZOffset = Random.Range(0.0f, 2.0f);
+        maxXOffset = Random.Range(0.75f, 1.5f);
+        maxZOffset = Random.Range(0.75f, 2.0f);
         timeOffsetX = Random.Range(0.0f, 10.0f);
         timeOffsetY = Random.Range(0.0f, 10.0f);
         timeOffsetZ = Random.Range(0.0f, 10.0f);
@@ -51,9 +51,10 @@ public class OrcaOscillation : MonoBehaviour
     {
         if (OrcaOscillationController.OOC.isOscillating)
         {
+            //sideways oscillation
             if (time > timeOffsetX)
             {
-                positionX = centrePositionX + maxXOffset * Mathf.Sin((time - timeOffsetX) / timeStretchX);
+                positionX = centrePositionX + maxXOffset * Mathf.Sin((time - timeOffsetX) * 3 / timeStretchX);
             }
             else
             {
@@ -61,6 +62,7 @@ public class OrcaOscillation : MonoBehaviour
             }
                 
 
+            //forwards oscillation
             if (time > timeOffsetY)
             {
                 positionY = bottomPositionY + (maxY - bottomPositionY) * ((-1 * Mathf.Cos((time-timeOffsetY)/timeStretchY)) + 1) / 2;
@@ -70,6 +72,7 @@ public class OrcaOscillation : MonoBehaviour
                 positionY = transform.position.y;
             }
 
+            //upwards oscillation
             if (time > timeOffsetZ)
             {
                 positionZ = centrePositionZ + maxZOffset * Mathf.Sin((time - timeOffsetZ) / timeStretchZ);

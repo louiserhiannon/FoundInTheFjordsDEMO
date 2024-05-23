@@ -6,8 +6,8 @@ public class OrcaOscillationController : MonoBehaviour
 {
     public static OrcaOscillationController OOC;
     public bool isOscillating;
-    [Range(1f, 10f)] public float minStretch;
-    [Range(1f, 10f)] public float maxStretch;
+    [Range(1f, 20f)] public float minStretch;
+    [Range(1f, 20f)] public float maxStretch;
     private void Awake()
     {
         OOC = this;

@@ -650,6 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orcaTargetCentre: {fileID: 0}
+  setParameters: 0
 --- !u!1 &2335554720387448257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,7 +1732,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.25
+      scalar: 0.05
       minScalar: 5
       maxCurve:
         serializedVersion: 2
