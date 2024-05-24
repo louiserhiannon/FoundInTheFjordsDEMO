@@ -58,6 +58,7 @@ public class CarouselManager : MonoBehaviour
     private void Awake()
     {
         CM = this;
+        SpawnCarouselOrca();
     }
 
     public void SpawnCarouselOrca()

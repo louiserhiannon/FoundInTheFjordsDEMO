@@ -38,6 +38,8 @@ public class DEMOCoroutine1 : MonoBehaviour
     private void Start()
     {
         orcasInPlace = new List<bool>();
+        carouselTransform.SetActive(false);
+        carouselTransform.GetComponentInChildren<FlockManager_Circular>().enabled = false;
         ActivateControlsDEMO.AC.DeActivateMovementControls();
         ActivateControlsDEMO.AC.DeActivateTailslapControls();
         ActivateControlsDEMO.AC.DeActivateEatControls();
@@ -83,8 +85,10 @@ public class DEMOCoroutine1 : MonoBehaviour
         //yield return new WaitForSeconds(1f);
         momAudioSource.PlayOneShot(voiceoverClips[0]);
         momBubbles.Play();
+        orcaMomAnimator.SetTrigger("Trigger_Talk");
         yield return new WaitForSeconds(voiceoverClips[0].length);
         momBubbles.Stop();
+        orcaMomAnimator.SetTrigger("Trigger_StopTalk");
 
 
         //Start sea motion
@@ -134,20 +138,35 @@ public class DEMOCoroutine1 : MonoBehaviour
         }
         //Play Clip 2.1
         momAudioSource.PlayOneShot(voiceoverClips[1]);
-        
+        momBubbles.Play();
+        orcaMomAnimator.SetTrigger("Trigger_Talk");
+
+        float tempTime = 0;
         while (orcasInPlace.Count < 5)
         {
+            tempTime += Time.deltaTime;
             yield return null;
         }
 
+        //Debug.Log(tempTime);
         orcasInPlace.Clear();
         OrcaOscillationController.OOC.isOscillating = true;
 
+        yield return new WaitForSeconds(voiceoverClips[1].length - tempTime);
+        momBubbles.Stop();
+        orcaMomAnimator.SetTrigger("Trigger_StopTalk");
+
+        yield return new WaitForSeconds(4);
+
         momAudioSource.PlayOneShot(voiceoverClips[2]); //this is my favourite thing to do
+        momBubbles.Play();
+        orcaMomAnimator.SetTrigger("Trigger_Talk");
 
         //yield return new WaitForSeconds(voiceoverClips[1].length / 3);
 
-        //yield return new WaitForSeconds(voiceoverClips[1].length);
+        yield return new WaitForSeconds(voiceoverClips[2].length);
+        momBubbles.Stop();
+        orcaMomAnimator.SetTrigger("Trigger_StopTalk");
 
 
         //momAudioSource.PlayOneShot(voiceoverClips[2]);
@@ -160,7 +179,7 @@ public class DEMOCoroutine1 : MonoBehaviour
         
         carouselTransform.SetActive(true);
         carouselTransform.GetComponentInChildren<FlockManager_Circular>().enabled = true;
-        CarouselManager.CM.SpawnCarouselOrca();
+        //CarouselManager.CM.SpawnCarouselOrca();
         //decelerate ocean so that it stops in correct place
         while (carouselOceanBox.position.z > 29)
         {
@@ -189,6 +208,8 @@ public class DEMOCoroutine1 : MonoBehaviour
             yield return null;
         }
         momAudioSource.PlayOneShot(voiceoverClips[3]);
+        momBubbles.Play();
+        orcaMomAnimator.SetTrigger("Trigger_Talk");
         StartCoroutine(RotateToCarousel(moveMomToTarget));
         //StartCoroutine(RecentreNora());
         orcaMomAnimator.SetTrigger("Trigger_StopSwim");
@@ -197,8 +218,10 @@ public class DEMOCoroutine1 : MonoBehaviour
 
       
         yield return new WaitForSeconds(voiceoverClips[3].length - 0.5f);
+        momBubbles.Stop();
+        orcaMomAnimator.SetTrigger("Trigger_StopTalk");
 
-        
+
         //Play clip 5.2a (if clip is split available)
         //momAudioSource.PlayOneShot(voiceoverClips[4]);
         //yield return new WaitForSeconds(voiceoverClips[4].length);
@@ -215,6 +238,11 @@ public class DEMOCoroutine1 : MonoBehaviour
         chargeCanvas.DOFade(1, 1);
         //Play clip 6.1
         momAudioSource.PlayOneShot(voiceoverClips[4]);
+        momBubbles.Play();
+        orcaMomAnimator.SetTrigger("Trigger_Talk");
+        yield return new WaitForSeconds(voiceoverClips[4].length);
+        momBubbles.Stop();
+        orcaMomAnimator.SetTrigger("Trigger_StopTalk");
 
         //skip to next coroutine
         //StartCoroutine(coroutine02.DEMOCoroutine02());

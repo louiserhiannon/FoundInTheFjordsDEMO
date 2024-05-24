@@ -11,6 +11,7 @@ public class DEMOCoroutine3 : MonoBehaviour
     public CanvasGroup herringCounterCanvas;
     public GameObject orcaMom;
     private Animator orcaMomAnimator;
+    private ParticleSystem momBubbles;
     public GameObject xRRig;
     public MoveToObject moveToClara;
     public Transform claraTargetTransform;
@@ -44,6 +45,7 @@ public class DEMOCoroutine3 : MonoBehaviour
     private void Awake()
     {
         orcaMomAnimator = orcaMom.GetComponent<Animator>();
+        momBubbles = orcaMom.GetComponentInChildren<ParticleSystem>();
         slidings = new List<bool>();
         for (int i = 0; i < 3; i++)
         {

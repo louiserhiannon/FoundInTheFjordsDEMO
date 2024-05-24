@@ -10,6 +10,7 @@ using System;
 public class DEMOCoroutine2 : MonoBehaviour
 {
     public AudioSource momAudioSource;
+    public ParticleSystem momBubbles;
     public Animator momAnimator;
     public GameObject xRRig;
     public MoveToObject rotateMom;
@@ -74,15 +75,22 @@ public class DEMOCoroutine2 : MonoBehaviour
         chargeCanvas.DOFade(0, 1);
         //Play clip 6.2
         momAudioSource.PlayOneShot(voiceoverClips[0]);
-        yield return new WaitForSeconds(voiceoverClips[0].length + 0.5f);
+        momAnimator.SetTrigger("Trigger_Talk");
+        momBubbles.Play();
+        yield return new WaitForSeconds(voiceoverClips[0].length);
+        momAnimator.SetTrigger("Trigger_StopTalk");
+        momBubbles.Stop();
         //Play humpback Sound
         humpback.SetActive(true);
         humpbackAudioSource.PlayOneShot(voiceoverClips[1]);
         yield return new WaitForSeconds(voiceoverClips[1].length);
         momAudioSource.PlayOneShot(voiceoverClips[2]);
+        momAnimator.SetTrigger("Trigger_Talk");
+        momBubbles.Play();
+        StartCoroutine(WaitForEndOfClip(voiceoverClips[2].length));
         //yield return new WaitForSeconds(voiceoverClips[2].length + 0.5f);
         //Activate humpback model and animation (humpback coroutine)
-        
+
         humpbackSwimToBaitball.targetTransform = humpbackTurnTarget;
         humpbackAnimationController.StartSwim();
         humpbackSwimToBaitball.distance = Vector3.Distance(humpbackSwimToBaitball.targetTransform.position, humpbackSwimToBaitball.transform.position);
@@ -175,6 +183,10 @@ public class DEMOCoroutine2 : MonoBehaviour
         
         //Play clip 8
         momAudioSource.PlayOneShot(voiceoverClips[3]);
+        momAnimator.SetTrigger("Trigger_Talk");
+        momBubbles.Play();
+        StartCoroutine(WaitForEndOfClip(voiceoverClips[3].length));
+
         StartCoroutine(StartOscillation());
         
         yield return new WaitForSeconds(30);
@@ -197,6 +209,9 @@ public class DEMOCoroutine2 : MonoBehaviour
 
         //Play clip 9
         momAudioSource.PlayOneShot(voiceoverClips[4]);
+        momAnimator.SetTrigger("Trigger_Talk");
+        momBubbles.Play();
+        StartCoroutine(WaitForEndOfClip(voiceoverClips[4].length));
         //Activate boats and herring (at right time)
         Debug.Log("ActivePoint 1 (boat) is at " + OceanMovement.OM.activePoints[0].position.z);
         Debug.Log("ActivePoint 2 (carousel) is at " + OceanMovement.OM.activePoints[1].position.z);
@@ -267,10 +282,14 @@ public class DEMOCoroutine2 : MonoBehaviour
 
         //Play Clip 10
         momAudioSource.PlayOneShot(voiceoverClips[5]);
+        momAnimator.SetTrigger("Trigger_Talk");
+        momBubbles.Play();
         yield return new WaitForSeconds(voiceoverClips[5].length);
         //Play clip 11
         momAudioSource.PlayOneShot(voiceoverClips[6]);
         yield return new WaitForSeconds(voiceoverClips[6].length);
+        momAnimator.SetTrigger("Trigger_StopTalk");
+        momBubbles.Stop();
         Debug.Log("instructional panel should be visible");
         //Show fish eating instructional panel
         eatFishInstructionalPanel.DOFade(1, 1);
@@ -429,5 +448,12 @@ public class DEMOCoroutine2 : MonoBehaviour
         }
         Debug.Log("it takes " + time + " seconds for the 8 orca to get back into place");
         OrcaOscillationController.OOC.isOscillating = true;
+    }
+
+    private IEnumerator WaitForEndOfClip(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        momAnimator.SetTrigger("Trigger_StopTalk");
+        momBubbles.Stop();
     }
 }

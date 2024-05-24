@@ -8,6 +8,8 @@ using JetBrains.Annotations;
 public class DEMOCoroutine4 : MonoBehaviour
 {
     public float rotateSpeed = 0.5f;
+    public Animator momAnimator;
+    public ParticleSystem momBubbles;
     public Transform orcaMom;
     public Transform orcaMomFinal;
     public Transform xRRig;
@@ -277,7 +279,11 @@ public class DEMOCoroutine4 : MonoBehaviour
 
         //goodbye from Mom
         momAudioSource.PlayOneShot(voiceoverClips[1]);
+        momAnimator.SetTrigger("Trigger_Talk");
+        momBubbles.Play();
         yield return new WaitForSeconds(voiceoverClips[1].length);
+        momAnimator.SetTrigger("Trigger_StopTalk");
+        momBubbles.Stop();
 
         //move to zodiac ladder
         moveToLadder.targetTransform = ladderTargetTransform;

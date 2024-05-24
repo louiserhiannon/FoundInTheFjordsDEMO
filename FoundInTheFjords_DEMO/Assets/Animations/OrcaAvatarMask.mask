@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: OrcaAvatarMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/Spine
+    m_Weight: 1
+  - m_Path: Armature/Spine/Back
+    m_Weight: 1
+  - m_Path: Armature/Spine/Back/Dorsal
+    m_Weight: 1
+  - m_Path: Armature/Spine/Back/Dorsal/Dorsal.001
+    m_Weight: 1
+  - m_Path: Armature/Spine/Back/Dorsal/Dorsal.001/Dorsal.002
+    m_Weight: 1
+  - m_Path: Armature/Spine/Back/Dorsal/Dorsal.001/Dorsal.002/Dorsal.002_end
+    m_Weight: 1
+  - m_Path: Armature/Spine/Chest
+    m_Weight: 1
+  - m_Path: Armature/Spine/Chest/Chest_end
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck/Jaw.B
+    m_Weight: 0
+  - m_Path: Armature/Spine/Neck/Jaw.B/Jaw.B.001
+    m_Weight: 0
+  - m_Path: Armature/Spine/Neck/Jaw.B/Jaw.B.001/Jaw.B.001_end
+    m_Weight: 0
+  - m_Path: Armature/Spine/Neck/Jaw.T
+    m_Weight: 0
+  - m_Path: Armature/Spine/Neck/Jaw.T/Jaw.T.001
+    m_Weight: 0
+  - m_Path: Armature/Spine/Neck/Jaw.T/Jaw.T.001/Jaw.T.001_end
+    m_Weight: 0
+  - m_Path: Armature/Spine/Neck/Shoulder.L
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck/Shoulder.L/Pect.L
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck/Shoulder.L/Pect.L/Pect.L.001
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck/Shoulder.L/Pect.L/Pect.L.001/Pect.L.002
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck/Shoulder.L/Pect.L/Pect.L.001/Pect.L.002/Pect.L.002_end
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck/Shoulder.R
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck/Shoulder.R/Pect.R
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck/Shoulder.R/Pect.R/Pect.R.001
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck/Shoulder.R/Pect.R/Pect.R.001/Pect.R.002
+    m_Weight: 1
+  - m_Path: Armature/Spine/Neck/Shoulder.R/Pect.R/Pect.R.001/Pect.R.002/Pect.R.002_end
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003/Spine.004
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003/Spine.004/Spine.005
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003/Spine.004/Spine.005/Tail.L
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003/Spine.004/Spine.005/Tail.L/Tail.L.001
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003/Spine.004/Spine.005/Tail.L/Tail.L.001/Tail.L.002
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003/Spine.004/Spine.005/Tail.L/Tail.L.001/Tail.L.002/Tail.L.002_end
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003/Spine.004/Spine.005/Tail.R
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003/Spine.004/Spine.005/Tail.R/Tail.R.001
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003/Spine.004/Spine.005/Tail.R/Tail.R.001/Tail.R.002
+    m_Weight: 1
+  - m_Path: Armature/Spine/Spine.001/Spine.002/Spine.003/Spine.004/Spine.005/Tail.R/Tail.R.001/Tail.R.002/Tail.R.002_end
+    m_Weight: 1
+  - m_Path: Body
+    m_Weight: 1
+  - m_Path: Body/Eyes
+    m_Weight: 1
+  - m_Path: Body/Teeth.Bottom
+    m_Weight: 1
+  - m_Path: Body/Teeth.Top
+    m_Weight: 1
