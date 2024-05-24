@@ -51,6 +51,7 @@ public class DEMOCoroutine4 : MonoBehaviour
     public GameObject ladder;
     public GameObject leftLadderGrabPoint;
     public GameObject rightLadderGrabPoint;
+    public JellyTalkAnimation claraTalkAnimation;
 
     private void Awake()
     {
@@ -262,9 +263,11 @@ public class DEMOCoroutine4 : MonoBehaviour
 
         //voiceover 17.1
         claraAudioSource.PlayOneShot(voiceoverClips[0]);
-        
-        
+        StartCoroutine(claraTalkAnimation.ClaraIsTalking());
+        claraTalkAnimation.isTalking = true;
+             
         yield return new WaitForSeconds(voiceoverClips[0].length);
+        claraTalkAnimation.isTalking = false;
 
         faceTarget = orcaMom.position - xRRig.position;
         faceAngle = Quaternion.LookRotation(faceTarget).eulerAngles.y;
@@ -306,5 +309,5 @@ public class DEMOCoroutine4 : MonoBehaviour
         rightLadderGrabPoint.SetActive(true);
 
     }
-
+   
 }

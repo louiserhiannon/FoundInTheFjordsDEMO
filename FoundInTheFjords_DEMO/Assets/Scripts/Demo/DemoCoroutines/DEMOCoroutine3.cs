@@ -34,6 +34,7 @@ public class DEMOCoroutine3 : MonoBehaviour
     public DEMOCoroutine4 coroutine04;
     private List<bool> slidings;
     public CanvasGroup interactWithSnorkelerPanel;
+    public JellyTalkAnimation claraTalkAnimation;
     //additional variables for testing
     //public GameObject fishingBoat;
     //public GameObject Zodiac;
@@ -84,7 +85,11 @@ public class DEMOCoroutine3 : MonoBehaviour
         //Play Clip 13
         //Debug.Log("Coroutine should be running");
         momAudioSource.PlayOneShot(voiceoverClips[0]);
+        orcaMomAnimator.SetTrigger("Trigger_Talk");
+        momBubbles.Play();
         yield return new WaitForSeconds(voiceoverClips[0].length);
+        orcaMomAnimator.SetTrigger("Trigger_StopTalk");
+        momBubbles.Stop();
         ////Mom and player swim to Clara
         //xRRig.transform.SetParent(orcaMom.transform, true);
         orcaMomAnimator.SetTrigger("Trigger_Swim");
@@ -116,7 +121,10 @@ public class DEMOCoroutine3 : MonoBehaviour
         //Play Clip 14.1 and make it obvious that Clara is talking
         xRRigBoundingBox.SetParent(null);
         claraAudioSource.PlayOneShot(voiceoverClips[1]);
+        StartCoroutine(claraTalkAnimation.ClaraIsTalking());
+        claraTalkAnimation.isTalking = true;
         yield return new WaitForSeconds(voiceoverClips[1].length);
+        claraTalkAnimation.isTalking = false;
         //Play Clip 14.2
         driverAudioSource.PlayOneShot(voiceoverClips[2]);
         yield return new WaitForSeconds(voiceoverClips[2].length);
@@ -144,6 +152,9 @@ public class DEMOCoroutine3 : MonoBehaviour
 
         //Play Clip 14.3 and make it obvious that Clara is talking
         claraAudioSource.PlayOneShot(voiceoverClips[3]);
+        StartCoroutine(claraTalkAnimation.ClaraIsTalking());
+        claraTalkAnimation.isTalking = true;
+        StartCoroutine(WaitForClaraClipToEnd(voiceoverClips[3].length));
         //yield return new WaitForSeconds(voiceoverClips[3].length);
         //Deactivate move controls and move player to surface (and rotate to be parallel to boat)
         ActivateControlsDEMO.AC.DeActivateMovementControls();
@@ -250,5 +261,11 @@ public class DEMOCoroutine3 : MonoBehaviour
 
         slidings[index] = false;
 
+    }
+
+    private IEnumerator WaitForClaraClipToEnd(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        claraTalkAnimation.isTalking = false;
     }
 }
