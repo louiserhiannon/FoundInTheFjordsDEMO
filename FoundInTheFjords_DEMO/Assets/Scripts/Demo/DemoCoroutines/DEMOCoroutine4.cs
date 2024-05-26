@@ -263,9 +263,9 @@ public class DEMOCoroutine4 : MonoBehaviour
 
         //voiceover 17.1
         claraAudioSource.PlayOneShot(voiceoverClips[0]);
-        StartCoroutine(claraTalkAnimation.ClaraIsTalking());
         claraTalkAnimation.isTalking = true;
-             
+        claraTalkAnimation.GetTalking();
+
         yield return new WaitForSeconds(voiceoverClips[0].length);
         claraTalkAnimation.isTalking = false;
 

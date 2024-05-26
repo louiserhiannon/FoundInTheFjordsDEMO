@@ -15,6 +15,7 @@ public class ActivateIdentitySwap : MonoBehaviour
     [SerializeField] private bool counterActive = true;
     //public TMP_Text counter;
     public DEMOCoroutine4 coroutine04; //need to update for demo to call new IdentitySwapDEMO script
+    public JellyTalkAnimation claraTalkAnimation;
     
     
 
@@ -43,6 +44,9 @@ public class ActivateIdentitySwap : MonoBehaviour
                         if(count == 2)
                         {
                             claraAudioSource.PlayOneShot(voiceover16);
+                            claraTalkAnimation.isTalking = true;
+                            claraTalkAnimation.GetTalking();
+                            StartCoroutine(WaitForEndOfClip());
                         }
                     }
                 }
@@ -64,5 +68,12 @@ public class ActivateIdentitySwap : MonoBehaviour
             //counter.text = count.ToString();
             
         }
+    }
+
+    private IEnumerator WaitForEndOfClip()
+    {
+        yield return new WaitForSeconds(voiceover16.length);
+        claraTalkAnimation.isTalking = true;
+
     }
 }

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Android.Types;
@@ -7,78 +8,89 @@ public class JellyTalkAnimation : MonoBehaviour
 {
     private SkinnedMeshRenderer meshRenderer;
     private Material jellyMouthMaterial;
-    private Color colourOriginal;
-    private Color colourFinal;
-    private Color mouthColour;
-    private float alphaOriginal;
-    private float alphaFinal;
-    private float alpha;
-    private float transitionTime;
-    private float time;
-    public bool isTalking = false;
-    private bool newSpeech = true;
+    // Black/Black
+    [SerializeField] private Color startTopColour = new(0.92f, 0, 1);
+    [SerializeField] private Color startBottomColour = new(0, 0.69f, 1);
+    // Black/Yellow
+    [SerializeField] private Color midTopColour = new(0, 0.69f, 1);
+    [SerializeField] private Color midBottomColour = new(0, 1, 0.2f);
+    // White/Blue
+    [SerializeField] private Color endTopColour = new(0, 1, 0.2f);
+    [SerializeField] private Color endBottomColour = new(0.92f, 0, 1);
 
-    void Start()
+    [SerializeField] private Color OriginalColour = new(0.92f, 0, 1);
+
+    [SerializeField] private float transitionTime;
+    [SerializeField] private float time;
+    //[SerializeField] private float deltaAlpha;
+    public bool isTalking = false;
+    //[SerializeField] private bool newSpeech = true;
+    //private Color testColour;
+
+    void Awake()
     {
         meshRenderer = GetComponent<SkinnedMeshRenderer>();
         jellyMouthMaterial = meshRenderer.materials[2];
-        colourOriginal = jellyMouthMaterial.color;
-        colourFinal = new Color(190, 139, 192);
-        mouthColour = colourOriginal;
-        alphaOriginal = jellyMouthMaterial.color.a;
-        alphaFinal = 0.8f;
-        alpha = alphaOriginal;
         time = 0;
     }
 
-    public IEnumerator ClaraIsTalking()
+    public void GetTalking()
     {
+        StartCoroutine(ClaraIsTalking());
+    }
+
+    private IEnumerator ClaraIsTalking()
+    {
+        Color top, bottom;
         while (isTalking)
         {
-            
-            if (newSpeech)
+            time = 0;
+            transitionTime = Random.Range(1, 2f);
+            Debug.Log(transitionTime);
+            while (time < transitionTime/4)
             {
-                newSpeech = false;
-                time = 0;
-                transitionTime = 0.5f;
-                while (time < transitionTime)
-                {
-                    alpha += (alphaFinal - alphaOriginal) / transitionTime * Time.deltaTime;
-                    mouthColour.a = alpha;
-                    jellyMouthMaterial.color = mouthColour;
-                    time += Time.deltaTime;
-                }
+                top = Color.Lerp(startTopColour, midTopColour, time % (transitionTime/4)/(transitionTime/4));
+                bottom = Color.Lerp(startBottomColour, midBottomColour, time % (transitionTime / 4) / (transitionTime / 4));
+                jellyMouthMaterial.SetColor("_TopColour", top);
+                jellyMouthMaterial.SetColor("_BottomColour", bottom);
 
-            }
-            
-            time = 0;
-            transitionTime = Random.Range(0, 0.5f);
-            while(time < transitionTime)
-            {
-                mouthColour = Color.Lerp(mouthColour, colourFinal, transitionTime * Time.deltaTime);
-                jellyMouthMaterial.color = mouthColour;
                 time += Time.deltaTime;
+                yield return null;
             }
-            time = 0;
-            transitionTime = Random.Range(0, 0.5f);
+            while (time < transitionTime / 2)
+            {
+                top = Color.Lerp(midTopColour, endTopColour, time % (transitionTime / 4) / (transitionTime / 4));
+                bottom = Color.Lerp(midBottomColour, endBottomColour, time % (transitionTime / 4) / (transitionTime / 4));
+                jellyMouthMaterial.SetColor("_TopColour", top);
+                jellyMouthMaterial.SetColor("_BottomColour", bottom);
+                time += Time.deltaTime;
+                yield return null;
+            }
+            while (time < 3 * transitionTime / 4 )
+            {
+                top = Color.Lerp(endTopColour, midTopColour, time % (transitionTime / 4) / (transitionTime / 4));
+                bottom = Color.Lerp(endBottomColour, midBottomColour, time % (transitionTime / 4) / (transitionTime / 4));
+                jellyMouthMaterial.SetColor("_TopColour", top);
+                jellyMouthMaterial.SetColor("_BottomColour", bottom);
+                time += Time.deltaTime;
+                yield return null;
+            }
             while (time < transitionTime)
             {
-                mouthColour = Color.Lerp(mouthColour, colourOriginal, transitionTime * Time.deltaTime);
-                jellyMouthMaterial.color = mouthColour;
+                top = Color.Lerp(midTopColour, startTopColour, time % (transitionTime / 4) / (transitionTime / 4));
+                bottom = Color.Lerp(midBottomColour, startBottomColour, time % (transitionTime / 4) / (transitionTime / 4));
+                jellyMouthMaterial.SetColor("_TopColour", top);
+                jellyMouthMaterial.SetColor("_BottomColour", bottom);
                 time += Time.deltaTime;
+                yield return null;
             }
 
             yield return null;
         }
 
-        time = 0;
-        transitionTime = 0.5f;
-        while (time < transitionTime)
-        {
-            alpha += (alphaOriginal - alphaFinal) / transitionTime * Time.deltaTime;
-            mouthColour.a = alpha;
-            jellyMouthMaterial.color = mouthColour;
-            time += Time.deltaTime;
-        }
+        jellyMouthMaterial.SetColor("_TopColour", OriginalColour);
+        jellyMouthMaterial.SetColor("_BottomColour", OriginalColour);
+
     }
+
 }

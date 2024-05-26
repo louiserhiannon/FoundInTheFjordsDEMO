@@ -121,8 +121,8 @@ public class DEMOCoroutine3 : MonoBehaviour
         //Play Clip 14.1 and make it obvious that Clara is talking
         xRRigBoundingBox.SetParent(null);
         claraAudioSource.PlayOneShot(voiceoverClips[1]);
-        StartCoroutine(claraTalkAnimation.ClaraIsTalking());
         claraTalkAnimation.isTalking = true;
+        claraTalkAnimation.GetTalking();
         yield return new WaitForSeconds(voiceoverClips[1].length);
         claraTalkAnimation.isTalking = false;
         //Play Clip 14.2
@@ -152,8 +152,8 @@ public class DEMOCoroutine3 : MonoBehaviour
 
         //Play Clip 14.3 and make it obvious that Clara is talking
         claraAudioSource.PlayOneShot(voiceoverClips[3]);
-        StartCoroutine(claraTalkAnimation.ClaraIsTalking());
         claraTalkAnimation.isTalking = true;
+        claraTalkAnimation.GetTalking();
         StartCoroutine(WaitForClaraClipToEnd(voiceoverClips[3].length));
         //yield return new WaitForSeconds(voiceoverClips[3].length);
         //Deactivate move controls and move player to surface (and rotate to be parallel to boat)
