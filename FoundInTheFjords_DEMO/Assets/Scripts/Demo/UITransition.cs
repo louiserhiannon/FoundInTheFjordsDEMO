@@ -17,6 +17,8 @@ public class UITransition : MonoBehaviour
     public CanvasGroup keyboard;
     public Canvas herringCounterCanvas;
     public HerringCounter herringCounter;
+    public AudioSource backgroundMusic;
+    public AudioClip ottering;
 
     //public string storedTemplateID;
 
@@ -75,7 +77,12 @@ public class UITransition : MonoBehaviour
     {
         ActivateControlsDEMO.AC.ActivateEatControls();
         EatingControllerDEMO.ECDemo.targetActive = true;
-     
+        EatingControllerDEMO.ECDemo.herringLifetime = 45;
+
+        backgroundMusic.clip = ottering;
+        backgroundMusic.volume = 0;
+        backgroundMusic.Play();
+        backgroundMusic.DOFade(1f, 3.0f);
 
         //Show Counter Panel
         herringCounterCanvas.GetComponentInChildren<CanvasGroup>().DOFade(1f, 1f);

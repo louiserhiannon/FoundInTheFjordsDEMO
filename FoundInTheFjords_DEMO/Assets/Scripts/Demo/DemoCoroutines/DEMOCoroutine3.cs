@@ -20,6 +20,9 @@ public class DEMOCoroutine3 : MonoBehaviour
     public AudioSource claraAudioSource;
     public AudioSource momAudioSource;
     public AudioSource driverAudioSource;
+    public AudioSource backgroundMusic;
+    public AudioSource shipDrone;
+    public AudioSource shipClanging;
     public DEMOCoroutine2 coroutine2;
     public List<AudioClip> voiceoverClips;
     public Transform snorkeler01Target;
@@ -77,8 +80,9 @@ public class DEMOCoroutine3 : MonoBehaviour
 
     public IEnumerator DEMOCoroutine03()
     {
-              
-        //Deactivate eat controls
+
+        //Deactivate eat controls and fade music
+        backgroundMusic.DOFade(0, 2);
         ActivateControlsDEMO.AC.DeActivateEatControls(); //For test only
         yield return new WaitForSeconds(3);
         herringCounterCanvas.DOFade(0, 1);
@@ -90,6 +94,11 @@ public class DEMOCoroutine3 : MonoBehaviour
         yield return new WaitForSeconds(voiceoverClips[0].length);
         orcaMomAnimator.SetTrigger("Trigger_StopTalk");
         momBubbles.Stop();
+
+        //Gradually fade ship sounds
+        shipDrone.DOFade(0, 15);
+        shipClanging.DOFade(0, 15);
+        
         ////Mom and player swim to Clara
         //xRRig.transform.SetParent(orcaMom.transform, true);
         orcaMomAnimator.SetTrigger("Trigger_Swim");

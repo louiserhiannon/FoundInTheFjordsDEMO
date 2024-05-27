@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 
 public class DEMOCoroutine1 : MonoBehaviour
 {
+    public AudioSource backgroundMusic;
     public AudioSource momAudioSource;
     public List<AudioClip> voiceoverClips;
     public ParticleSystem momBubbles;
@@ -98,7 +99,7 @@ public class DEMOCoroutine1 : MonoBehaviour
         //Start sea motion
         oceanMovement.isMoving = true;
         orcaMomAnimator.SetTrigger("Trigger_Swim");
-        momBubbles.transform.localEulerAngles = new Vector3(-45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        momBubbles.transform.localEulerAngles = new Vector3(-65, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
 
         //activate move controls
         ActivateControlsDEMO.AC.ActivateMovementControls();

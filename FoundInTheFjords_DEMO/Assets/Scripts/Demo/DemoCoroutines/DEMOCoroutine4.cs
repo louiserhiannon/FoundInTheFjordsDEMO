@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
 
 public class DEMOCoroutine4 : MonoBehaviour
 {
@@ -39,6 +40,8 @@ public class DEMOCoroutine4 : MonoBehaviour
     public AudioSource swirlAudioSource;
     public AudioSource claraAudioSource;
     public AudioSource momAudioSource;
+    public AudioClip ottering;
+    public AudioClip calm;
     //private float voiceover41Duration = 3.2f;
     //private float voiceover42Duration = 14.8f;
     //private float voiceover43Duration = 14.0f;
@@ -105,8 +108,11 @@ public class DEMOCoroutine4 : MonoBehaviour
         identitySwapTunnel.SetParent(null);
         swirl.Play();
         //Start swirl music
-        swirlAudioSource.Play(); //attach swirl music to this audio source
-        backgroundMusic.Stop();
+        //swirlAudioSource.Play(); //attach swirl music to this audio source
+        //StartCoroutine(FadeAudioSource.StartFade(backgroundMusic, 2, 0));
+        StartCoroutine(FadeAudioSource.StartFade(swirlAudioSource, 2, 1));
+        //backgroundMusic.Stop();
+        
         yield return new WaitForSeconds(1.5f);
         //start herring scales animation
         scales.Play();
@@ -244,8 +250,12 @@ public class DEMOCoroutine4 : MonoBehaviour
         swirl.Stop();
         scales.Stop();
         swirlAudioSource.DOFade(0, 3);
+        backgroundMusic.clip = calm;
+        backgroundMusic.DOFade(1, 3);
 
         yield return new WaitForSeconds(5);
+        
+
 
         //move to face mom and Clara
         Vector3 faceTarget = clara.position - xRRig.position;
@@ -303,7 +313,9 @@ public class DEMOCoroutine4 : MonoBehaviour
             yield return null;
         }
 
-        //activate climb mechanic
+        //activate climb mechanic and start ottering music
+        backgroundMusic.clip = ottering;
+        backgroundMusic.DOFade(1, 2); 
         grabLadder.DOFade(1,1);
         leftLadderGrabPoint.SetActive(true);
         rightLadderGrabPoint.SetActive(true);

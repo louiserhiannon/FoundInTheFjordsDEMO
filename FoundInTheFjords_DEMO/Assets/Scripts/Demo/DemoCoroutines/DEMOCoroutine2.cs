@@ -9,6 +9,10 @@ using System;
 
 public class DEMOCoroutine2 : MonoBehaviour
 {
+    public AudioSource backgroundMusic;
+    public AudioSource shipDroneSoundSource;
+    public AudioSource shipClangingSoundSource;
+    public AudioClip calm;
     public AudioSource momAudioSource;
     public ParticleSystem momBubbles;
     public Animator momAnimator;
@@ -76,7 +80,8 @@ public class DEMOCoroutine2 : MonoBehaviour
 
     public IEnumerator DEMOCoroutine02()
     {
-        
+        Debug.Log("Coroutine02 begins at " + Time.time);
+        backgroundMusic.clip = calm;
         //Play clip 6.2
         momAudioSource.PlayOneShot(voiceoverClips[0]);
         momAnimator.SetTrigger("Trigger_Talk");
@@ -177,7 +182,7 @@ public class DEMOCoroutine2 : MonoBehaviour
         oceanMovement.isMoving = true;
         oceanMovement.waveManager = waveManager;
         momAnimator.SetTrigger("Trigger_Swim");
-        momBubbles.transform.localEulerAngles = new Vector3(-45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        momBubbles.transform.localEulerAngles = new Vector3(-65, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
 
         //rotate mom and nora back to face forwards
         rotateMom.targetTransform = momTarget;
@@ -259,10 +264,18 @@ public class DEMOCoroutine2 : MonoBehaviour
             fishingBoatTime += Time.deltaTime;
             yield return null;
         }
-        Debug.Log("There is a pause of " + fishingBoatTime + " seconds before the fishing boat activates");
+        Debug.Log("There is a pause of " + fishingBoatTime + " seconds before the fishing boat activates (" + Time.time + ")");
+        Debug.Log("When the boat is set to activate, ActivePoint 1 (boat) is at " + OceanMovement.OM.activePoints[0].position.z);
 
         fishingBoat.SetActive(true);
         zodiac.SetActive(true);
+        shipDroneSoundSource.volume = 0;
+        shipDroneSoundSource.Play();
+        shipDroneSoundSource.DOFade(1, 15);
+        shipClangingSoundSource.volume = 0;
+        shipClangingSoundSource.Play();
+        shipClangingSoundSource.DOFade(1, 15);
+
 
         for (int i = 0; i < allOrcas.Count; i++)
         {
