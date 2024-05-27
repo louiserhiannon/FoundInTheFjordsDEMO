@@ -453,7 +453,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6435695411812032425}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &3029514496582603973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,7 +1001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1377667580647389148
 Transform:
   m_ObjectHideFlags: 0
@@ -1037,7 +1037,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -691226189379801955, guid: 69745a7c6a0d9a94e9b2ce088c9bf314, type: 3}
+  - {fileID: 2100000, guid: 4e0d0799dae21364aaed6f1485550f9e, type: 2}
   - {fileID: -3487637683973761237, guid: 69745a7c6a0d9a94e9b2ce088c9bf314, type: 3}
   - {fileID: 7383268965784156516, guid: 69745a7c6a0d9a94e9b2ce088c9bf314, type: 3}
   m_StaticBatchInfo:
@@ -1543,6 +1543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7111145791004040509}
   - component: {fileID: 3658750037204963983}
+  - component: {fileID: 4529813162897709317}
   m_Layer: 6
   m_Name: Body_LOD0
   m_TagString: Untagged
@@ -1585,7 +1586,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -691226189379801955, guid: 69745a7c6a0d9a94e9b2ce088c9bf314, type: 3}
+  - {fileID: 2100000, guid: 4e0d0799dae21364aaed6f1485550f9e, type: 2}
   - {fileID: -3487637683973761237, guid: 69745a7c6a0d9a94e9b2ce088c9bf314, type: 3}
   - {fileID: 7383268965784156516, guid: 69745a7c6a0d9a94e9b2ce088c9bf314, type: 3}
   m_StaticBatchInfo:
@@ -1650,6 +1651,23 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000000121071935, y: 0.017934572, z: 0.00037751673}
     m_Extent: {x: 0.0154668065, y: 0.034068733, z: 0.013972836}
   m_DirtyAABB: 0
+--- !u!114 &4529813162897709317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450305764395974671}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bedf3bb0508607458a3bc434f874af5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseColour: {r: 1, g: 1, b: 1, a: 1}
+  highlightColour: {r: 0.76724565, g: 1, b: 0, a: 1}
+  isHighlighted: 0
+  effectDuration: 1
+  time: 0
 --- !u!1 &7581893924742705918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,7 +1684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1924535346102589909
 Transform:
   m_ObjectHideFlags: 0
@@ -1702,7 +1720,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -691226189379801955, guid: 69745a7c6a0d9a94e9b2ce088c9bf314, type: 3}
+  - {fileID: 2100000, guid: 4e0d0799dae21364aaed6f1485550f9e, type: 2}
   - {fileID: -3487637683973761237, guid: 69745a7c6a0d9a94e9b2ce088c9bf314, type: 3}
   - {fileID: 7383268965784156516, guid: 69745a7c6a0d9a94e9b2ce088c9bf314, type: 3}
   m_StaticBatchInfo:

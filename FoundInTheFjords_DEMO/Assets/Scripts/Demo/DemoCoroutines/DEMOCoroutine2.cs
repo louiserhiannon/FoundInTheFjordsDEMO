@@ -42,8 +42,11 @@ public class DEMOCoroutine2 : MonoBehaviour
     public Transform orcaFleeTarget;
     public ParticleSystem herringScales;
     public AudioClip humpbackOmnomnom;
-    public GameObject highlightAnna;
-    public GameObject highlightMagnus;
+    //public GameObject highlightAnna;
+    public OrcaHighlightAnimation highlightMaterialAnna;
+    //public GameObject highlightMagnus;
+    public OrcaHighlightAnimation highlightMaterialMagnus;
+    //private OrcaHighlightAnimation highlightMaterialGrandma;
     public GameObject fishingBoat;
     public Transform herringNet;
     public GameObject zodiac;
@@ -60,8 +63,8 @@ public class DEMOCoroutine2 : MonoBehaviour
 
     private void Awake()
     {
-        highlightAnna.SetActive(false);
-        highlightMagnus.SetActive(false);
+        highlightMaterialAnna.enabled = false;
+        highlightMaterialMagnus.enabled = false;
         humpback.SetActive(false);
         fishingBoat.SetActive(false);
         zodiac.SetActive(false);
@@ -214,23 +217,32 @@ public class DEMOCoroutine2 : MonoBehaviour
 
         StartCoroutine(StartOscillation());
         
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(35);
 
         //highlight grandma in some way (placeholder - add interactivity sphere and activate/deactivate)
-        var highlightGrandma = allOrcas[6].Find("InteractionSignifierPrefab");
-        highlightGrandma.gameObject.SetActive(true);
-        yield return new WaitForSeconds(13);
-        highlightGrandma.gameObject.SetActive(false);
+        var highlightGrandma = allOrcas[6].GetComponentInChildren<OrcaHighlightAnimation>();
+        highlightGrandma.enabled = true;
+        highlightGrandma.isHighlighted = true;
+        yield return new WaitForSeconds(11);
+        highlightGrandma.isHighlighted = false;
+        yield return new WaitForNextFrameUnit();
+        highlightGrandma.enabled = false;
         //wait an appropriate number of seconds
         yield return new WaitForSeconds(7f);
         //Highlight Anna and Magnus
-        highlightAnna.SetActive(true);
-        highlightMagnus.SetActive(true);
-        yield return new WaitForSeconds(10);
-        highlightAnna.SetActive(false);
-        highlightMagnus.SetActive(false);
+        highlightMaterialAnna.enabled = true;
+        highlightMaterialAnna.isHighlighted = true;
+        highlightMaterialMagnus.enabled = true;
+        highlightMaterialMagnus.isHighlighted = true;
+        yield return new WaitForSeconds(11);
+        highlightMaterialAnna.isHighlighted = false;
+        highlightMaterialMagnus.isHighlighted = false;
+        yield return new WaitForNextFrameUnit();
+        highlightMaterialAnna.enabled = false;
+        highlightMaterialMagnus.enabled = false;
+        
         //Wait an appropriate number of seconds
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(6);
 
         //Play clip 9
         momAudioSource.PlayOneShot(voiceoverClips[4]);
