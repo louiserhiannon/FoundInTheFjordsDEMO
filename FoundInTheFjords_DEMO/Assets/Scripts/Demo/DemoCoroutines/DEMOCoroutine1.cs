@@ -25,8 +25,11 @@ public class DEMOCoroutine1 : MonoBehaviour
     public OceanMovement oceanMovement;
     public GameObject xRRig;
     public CanvasGroup youCanMovePanel;
+    public Canvas meetMomCanvas;
     public List<MoveToObject> moveGroupOneOrcas;
     public GameObject carouselTransform;
+    public Transform carouselTarget;
+    private MoveToObject moveCarousel;
     public Transform carouselOceanBox;
     public Transform faceCarousel;
     public Transform noraCentre;
@@ -46,6 +49,7 @@ public class DEMOCoroutine1 : MonoBehaviour
         waveManager = activeOceanBox.GetComponentInChildren<WaveManager>();
         oceanMovement.waveManager = waveManager;
         //moveNoraToTarget = xRRig.GetComponent<MoveToObject>();
+        moveCarousel = carouselTransform.GetComponent<MoveToObject>();
         StartCoroutine(DemoCoroutine01());
     }
 
@@ -94,10 +98,12 @@ public class DEMOCoroutine1 : MonoBehaviour
         //Start sea motion
         oceanMovement.isMoving = true;
         orcaMomAnimator.SetTrigger("Trigger_Swim");
+        momBubbles.transform.localEulerAngles = new Vector3(-45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
 
         //activate move controls
         ActivateControlsDEMO.AC.ActivateMovementControls();
-        
+        StartCoroutine(ManageInfoPanels());
+               
         //move and rotate Group 1 orca into place
         for (int i = 0; i < moveGroupOneOrcas.Count; i++)
         {
@@ -112,8 +118,7 @@ public class DEMOCoroutine1 : MonoBehaviour
             yield return null;
         }
 
-        //flash panel with movement reminder
-        youCanMovePanel.DOFade(1, 1);
+        
 
         //move mom closer to Nora
         moveMomToTarget.targetTransform = momMidTarget;
@@ -129,13 +134,19 @@ public class DEMOCoroutine1 : MonoBehaviour
         }
 
         moveMomToTarget.speed = 2f;
-        yield return new WaitForSeconds(2);
-        youCanMovePanel.DOFade(0, 1);
+        
 
         while (orcasInPlace.Count < 3)
         {
             yield return null;
         }
+
+        //hide mom info panel
+        foreach (CanvasGroup panel in meetMomCanvas.GetComponentsInChildren<CanvasGroup>())
+        {
+            panel.DOFade(0, 1);
+        }
+
         //Play Clip 2.1
         momAudioSource.PlayOneShot(voiceoverClips[1]);
         momBubbles.Play();
@@ -193,6 +204,7 @@ public class DEMOCoroutine1 : MonoBehaviour
 
         
         oceanMovement.isMoving = false;
+        momBubbles.transform.localEulerAngles = new Vector3(0, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
         //Activate Group 1 orca scatter
         OrcaOscillationController.OOC.isOscillating = false;
         for (int i = 0; i < moveGroupOneOrcas.Count; i++)
@@ -213,24 +225,28 @@ public class DEMOCoroutine1 : MonoBehaviour
         StartCoroutine(RotateToCarousel(moveMomToTarget));
         //StartCoroutine(RecentreNora());
         orcaMomAnimator.SetTrigger("Trigger_StopSwim");
-
-        
-
-      
+         
+             
         yield return new WaitForSeconds(voiceoverClips[3].length - 0.5f);
         momBubbles.Stop();
         orcaMomAnimator.SetTrigger("Trigger_StopTalk");
 
 
-        //Play clip 5.2a (if clip is split available)
-        //momAudioSource.PlayOneShot(voiceoverClips[4]);
-        //yield return new WaitForSeconds(voiceoverClips[4].length);
+        yield return new WaitForSeconds(1);
 
-        //yield return new WaitForSeconds(5);
+        //move closer to carousel
+        moveCarousel.targetTransform = carouselTarget;
+        moveCarousel.speed = 1.5f;
+        moveCarousel.minDistance = 0.2f;
+        moveCarousel.distance = Vector3.Distance(moveCarousel.targetTransform.position, moveCarousel.transform.position);
+        momBubbles.transform.localEulerAngles = new Vector3(-45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
 
-        //Play clip 5.2
-        //momAudioSource.PlayOneShot(voiceoverClips[3]);
-        //yield return new WaitForSeconds(voiceoverClips[3].length);
+        while (moveCarousel.distance > moveCarousel.minDistance)
+        {
+            moveCarousel.TranslateToMinimumDistance();
+            yield return null;
+        }
+        momBubbles.transform.localEulerAngles = new Vector3(0, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
 
         //Activate grip button
         ActivateControlsDEMO.AC.ActivateTailslapControls();
@@ -276,6 +292,22 @@ public class DEMOCoroutine1 : MonoBehaviour
             yield return null;
         }
         
+    }
+
+    private IEnumerator ManageInfoPanels()
+    {
+        //flash panel with movement reminder
+        youCanMovePanel.DOFade(1, 1);
+        yield return new WaitForSeconds(4);
+        //hide movement reminder panel
+        youCanMovePanel.DOFade(0, 1);
+        yield return new WaitForSeconds(1);
+
+        //Show mom info panel
+        foreach (CanvasGroup panel in meetMomCanvas.GetComponentsInChildren<CanvasGroup>())
+        {
+            panel.DOFade(1, 1);
+        }
     }
 
     //public IEnumerator RecentreNora()

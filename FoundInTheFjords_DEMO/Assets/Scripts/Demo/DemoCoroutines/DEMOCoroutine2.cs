@@ -21,6 +21,7 @@ public class DEMOCoroutine2 : MonoBehaviour
     public List<AudioClip> voiceoverClips;
     public GameObject humpback;
     public GameObject carouselTransform;
+
     public OceanMovement oceanMovement;
     public Transform groupTwoOrcaParent;
     [SerializeField] private List<Transform> groupTwoOrcas = new List<Transform>();
@@ -30,6 +31,10 @@ public class DEMOCoroutine2 : MonoBehaviour
     public List<Transform> allOrcas;
     public List<Transform> orcaRestartPositions;
     public List<Transform> returnToFamilyTargets;
+    //private MoveToObject moveCarousel;
+    public Transform carouselTarget;
+    private MoveToObject moveCarousel;
+    public GameObject stunnedHerring;
     public MoveToObject humpbackSwimToBaitball;
     public Transform humpbackTurnTarget;
     public Transform humpbackEatTarget;
@@ -55,7 +60,6 @@ public class DEMOCoroutine2 : MonoBehaviour
 
     private void Awake()
     {
-        
         highlightAnna.SetActive(false);
         highlightMagnus.SetActive(false);
         humpback.SetActive(false);
@@ -63,16 +67,13 @@ public class DEMOCoroutine2 : MonoBehaviour
         zodiac.SetActive(false);
         orcasBackInPlace = new List<bool>();
         waveManager = boatOceanBox.GetComponentInChildren<WaveManager>();
+        moveCarousel = carouselTransform.GetComponent<MoveToObject>();
 
     }
 
     public IEnumerator DEMOCoroutine02()
     {
-        //Deactivate tailslap control
-        //ActivateControlsDEMO.AC.DeActivateTailslapControls();
-        ActivateControlsDEMO.AC.ActivateMovementControls();
-        //Hide charge panel
-        chargeCanvas.DOFade(0, 1);
+        
         //Play clip 6.2
         momAudioSource.PlayOneShot(voiceoverClips[0]);
         momAnimator.SetTrigger("Trigger_Talk");
@@ -80,14 +81,37 @@ public class DEMOCoroutine2 : MonoBehaviour
         yield return new WaitForSeconds(voiceoverClips[0].length);
         momAnimator.SetTrigger("Trigger_StopTalk");
         momBubbles.Stop();
+
+        //wait a few seconds
+        yield return new WaitForSeconds(3);
+        //Hide charge panel
+        chargeCanvas.DOFade(0, 1);
+
+        //reparent stunnedHerring
+        stunnedHerring.transform.SetParent(carouselTransform.transform, true);
+        //move carousel back
+        moveCarousel.targetTransform = carouselTarget;
+        moveCarousel.speed = 1.2f;
+        moveCarousel.minDistance = 0.2f;
+        moveCarousel.distance = Vector3.Distance(moveCarousel.targetTransform.position, moveCarousel.transform.position);
+        momBubbles.transform.localEulerAngles = new Vector3(45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+
+        while (moveCarousel.distance > moveCarousel.minDistance)
+        {
+            moveCarousel.TranslateToMinimumDistance();
+            yield return null;
+        }
+        momBubbles.transform.localEulerAngles = new Vector3(0, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+
+        ActivateControlsDEMO.AC.ActivateMovementControls();
+        
+        
         //Play humpback Sound
         humpback.SetActive(true);
         humpbackAudioSource.PlayOneShot(voiceoverClips[1]);
-        yield return new WaitForSeconds(voiceoverClips[1].length);
-        momAudioSource.PlayOneShot(voiceoverClips[2]);
-        momAnimator.SetTrigger("Trigger_Talk");
-        momBubbles.Play();
-        StartCoroutine(WaitForEndOfClip(voiceoverClips[2].length));
+        StartCoroutine(WaitForHumpbackToStart());
+        //yield return new WaitForSeconds(1);
+        
         //yield return new WaitForSeconds(voiceoverClips[2].length + 0.5f);
         //Activate humpback model and animation (humpback coroutine)
 
@@ -150,6 +174,7 @@ public class DEMOCoroutine2 : MonoBehaviour
         oceanMovement.isMoving = true;
         oceanMovement.waveManager = waveManager;
         momAnimator.SetTrigger("Trigger_Swim");
+        momBubbles.transform.localEulerAngles = new Vector3(-45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
 
         //rotate mom and nora back to face forwards
         rotateMom.targetTransform = momTarget;
@@ -278,7 +303,8 @@ public class DEMOCoroutine2 : MonoBehaviour
         }
 
         momAnimator.SetTrigger("Trigger_StopSwim");
-       
+        momBubbles.transform.localEulerAngles = new Vector3(0, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+
 
         //Play Clip 10
         momAudioSource.PlayOneShot(voiceoverClips[5]);
@@ -315,6 +341,14 @@ public class DEMOCoroutine2 : MonoBehaviour
         //Debug.Log("Next coroutine should trigger");
     }
 
+    private IEnumerator WaitForHumpbackToStart()
+    {
+        yield return new WaitForSeconds(voiceoverClips[1].length - 5f);
+        momAudioSource.PlayOneShot(voiceoverClips[2]);
+        momAnimator.SetTrigger("Trigger_Talk");
+        momBubbles.Play();
+        StartCoroutine(WaitForEndOfClip(voiceoverClips[2].length));
+    }
     public IEnumerator OrcaSwimAway()
     {
 
