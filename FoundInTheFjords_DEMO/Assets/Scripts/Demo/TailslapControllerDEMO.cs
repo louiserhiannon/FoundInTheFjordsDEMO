@@ -35,6 +35,7 @@ public class TailslapControllerDEMO : MonoBehaviour
     private Vector3 directionOfShake;
     public HapticController hapticLeft;
     public HapticController hapticRight;
+    public GameObject stunnedHerring;
     public DEMOCoroutine2 demoCoroutine2;
     private Scene scene;
 
@@ -136,6 +137,12 @@ public class TailslapControllerDEMO : MonoBehaviour
                     mirrorOrcaAnimator.SetTrigger("Trigger_TailSlap");
                     Debug.Log("tailslap animation should be running");
                 }
+                if (scene.name == ("DEMO"))
+                {
+                    //spawn stunned herring
+                    stunnedHerring.SetActive(true);
+                }
+                
             }
             slapCharge = 0f;
             tailCharged = false;
@@ -153,6 +160,8 @@ public class TailslapControllerDEMO : MonoBehaviour
         vibrateTime = 0f;
         hapticLeft.ActivateHaptic(0.5f, vibrateDuration);
         hapticRight.ActivateHaptic(0.5f, vibrateDuration);
+        
+
         while (vibrateTime < vibrateDuration)
         {
             amplitude = (Mathf.Cos(Mathf.PI * vibrateTime / amplitudeDecayPeriod) + 1) / 2 * maxAmplitude;
@@ -162,7 +171,7 @@ public class TailslapControllerDEMO : MonoBehaviour
             yield return null;
         }
 
-        tailSlapPanel.DOFade(0, 1f);
+        //tailSlapPanel.DOFade(0, 1f);
 
         if (scene.name == "DEMO")
         {
