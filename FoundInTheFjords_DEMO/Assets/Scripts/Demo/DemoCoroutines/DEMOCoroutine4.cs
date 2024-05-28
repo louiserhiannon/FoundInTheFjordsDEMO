@@ -108,9 +108,11 @@ public class DEMOCoroutine4 : MonoBehaviour
         identitySwapTunnel.SetParent(null);
         swirl.Play();
         //Start swirl music
-        //swirlAudioSource.Play(); //attach swirl music to this audio source
+        swirlAudioSource.volume = 0;
+        swirlAudioSource.Play();
+        swirlAudioSource.DOFade(1, 3);//attach swirl music to this audio source
         //StartCoroutine(FadeAudioSource.StartFade(backgroundMusic, 2, 0));
-        StartCoroutine(FadeAudioSource.StartFade(swirlAudioSource, 2, 1));
+        
         //backgroundMusic.Stop();
         
         yield return new WaitForSeconds(1.5f);
@@ -250,8 +252,10 @@ public class DEMOCoroutine4 : MonoBehaviour
         swirl.Stop();
         scales.Stop();
         swirlAudioSource.DOFade(0, 3);
-        backgroundMusic.clip = calm;
-        backgroundMusic.DOFade(1, 3);
+        //backgroundMusic.clip = calm;
+        //backgroundMusic.volume = 0;
+        //backgroundMusic.Play();
+        //backgroundMusic.DOFade(0.7f, 3);
 
         yield return new WaitForSeconds(5);
         
@@ -297,6 +301,7 @@ public class DEMOCoroutine4 : MonoBehaviour
         yield return new WaitForSeconds(voiceoverClips[1].length);
         momAnimator.SetTrigger("Trigger_StopTalk");
         momBubbles.Stop();
+        //backgroundMusic.DOFade(0,3);
 
         //move to zodiac ladder
         moveToLadder.targetTransform = ladderTargetTransform;
@@ -315,7 +320,8 @@ public class DEMOCoroutine4 : MonoBehaviour
 
         //activate climb mechanic and start ottering music
         backgroundMusic.clip = ottering;
-        backgroundMusic.DOFade(1, 2); 
+        backgroundMusic.Play();
+        backgroundMusic.DOFade(0.5f, 2); 
         grabLadder.DOFade(1,1);
         leftLadderGrabPoint.SetActive(true);
         rightLadderGrabPoint.SetActive(true);

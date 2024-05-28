@@ -11,8 +11,10 @@ public static class FadeAudioSource {
         {
             currentTime += Time.deltaTime;
             audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            Debug.Log(audioSource + " volume is " + audioSource.volume);
             yield return null;
         }
+
         yield break;
     }
 }

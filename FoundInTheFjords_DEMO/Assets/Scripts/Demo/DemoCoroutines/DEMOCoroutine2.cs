@@ -25,6 +25,7 @@ public class DEMOCoroutine2 : MonoBehaviour
     public List<AudioClip> voiceoverClips;
     public GameObject humpback;
     public GameObject carouselTransform;
+    public BoatScaleUp boatScale;
 
     public OceanMovement oceanMovement;
     public Transform groupTwoOrcaParent;
@@ -81,7 +82,7 @@ public class DEMOCoroutine2 : MonoBehaviour
     public IEnumerator DEMOCoroutine02()
     {
         Debug.Log("Coroutine02 begins at " + Time.time);
-        backgroundMusic.clip = calm;
+        
         //Play clip 6.2
         momAudioSource.PlayOneShot(voiceoverClips[0]);
         momAnimator.SetTrigger("Trigger_Talk");
@@ -89,11 +90,14 @@ public class DEMOCoroutine2 : MonoBehaviour
         yield return new WaitForSeconds(voiceoverClips[0].length);
         momAnimator.SetTrigger("Trigger_StopTalk");
         momBubbles.Stop();
+        //backgroundMusic.DOFade(0, 3);
+
 
         //wait a few seconds
         yield return new WaitForSeconds(3);
         //Hide charge panel
         chargeCanvas.DOFade(0, 1);
+        
 
         //reparent stunnedHerring
         stunnedHerring.transform.SetParent(carouselTransform.transform, true);
@@ -103,6 +107,7 @@ public class DEMOCoroutine2 : MonoBehaviour
         moveCarousel.minDistance = 0.2f;
         moveCarousel.distance = Vector3.Distance(moveCarousel.targetTransform.position, moveCarousel.transform.position);
         momBubbles.transform.localEulerAngles = new Vector3(45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        momAnimator.SetTrigger("Trigger_Swim");
 
         while (moveCarousel.distance > moveCarousel.minDistance)
         {
@@ -110,6 +115,7 @@ public class DEMOCoroutine2 : MonoBehaviour
             yield return null;
         }
         momBubbles.transform.localEulerAngles = new Vector3(0, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        momAnimator.SetTrigger("Trigger_StopSwim");
 
         ActivateControlsDEMO.AC.ActivateMovementControls();
         
@@ -183,6 +189,9 @@ public class DEMOCoroutine2 : MonoBehaviour
         oceanMovement.waveManager = waveManager;
         momAnimator.SetTrigger("Trigger_Swim");
         momBubbles.transform.localEulerAngles = new Vector3(-65, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        backgroundMusic.clip = calm;
+        backgroundMusic.Play();
+        backgroundMusic.DOFade(0.7f,3);
 
         //rotate mom and nora back to face forwards
         rotateMom.targetTransform = momTarget;
@@ -258,6 +267,8 @@ public class DEMOCoroutine2 : MonoBehaviour
         Debug.Log("ActivePoint 1 (boat) is at " + OceanMovement.OM.activePoints[0].position.z);
         Debug.Log("ActivePoint 2 (carousel) is at " + OceanMovement.OM.activePoints[1].position.z);
         Debug.Log("ActivePoint 3 (empty) is at " + OceanMovement.OM.activePoints[2].position.z);
+        fishingBoat.SetActive(true);
+        StartCoroutine(boatScale.ScaleBoat());
         float fishingBoatTime = 0;
         while (boatOceanBox.position.z < 500 || boatOceanBox.position.z > 550)
         {
@@ -267,7 +278,7 @@ public class DEMOCoroutine2 : MonoBehaviour
         Debug.Log("There is a pause of " + fishingBoatTime + " seconds before the fishing boat activates (" + Time.time + ")");
         Debug.Log("When the boat is set to activate, ActivePoint 1 (boat) is at " + OceanMovement.OM.activePoints[0].position.z);
 
-        fishingBoat.SetActive(true);
+        fishingBoat.transform.SetParent(boatOceanBox, true);
         zodiac.SetActive(true);
         shipDroneSoundSource.volume = 0;
         shipDroneSoundSource.Play();
@@ -291,6 +302,7 @@ public class DEMOCoroutine2 : MonoBehaviour
             yield return null;
         }
         oceanMovement.isMoving = false;
+        backgroundMusic.DOFade(0, 3);
         //Activate fishing scene orca movement (random) for group 1 and 2 orca
         
         for (int i = 0; i < returnToFamilyTargets.Count; i++)
@@ -306,7 +318,13 @@ public class DEMOCoroutine2 : MonoBehaviour
             startRandomMotion.orcaTargetCentre = orcaTargetCentre;
             startRandomMotion.enabled = true;
             startRandomMotion.setParameters = true;
+
+            Vector3 bubbleAngle = allOrcas[i].transform.Find("Bubbles").transform.localEulerAngles;
+            bubbleAngle.x = 0;
+            allOrcas[i].transform.Find("Bubbles").transform.localEulerAngles = new Vector3(bubbleAngle.x, bubbleAngle.y, bubbleAngle.z);
         }
+
+
         
         //start herring swimming
         SpawnEatableHerring.SH.spawnHerring = true;
@@ -350,8 +368,7 @@ public class DEMOCoroutine2 : MonoBehaviour
         readyButton.DOFade(1, 1);
         readyButton.blocksRaycasts = true;
         readyButton.interactable = true;
-        ActivateControlsDEMO.AC.ActivateEatControls();
-        EatingControllerDEMO.ECDemo.herringLifetime = 45;
+        
 
 
 
@@ -470,6 +487,10 @@ public class DEMOCoroutine2 : MonoBehaviour
             move.RotateToAlign();
             yield return null;
         }
+
+        Vector3 bubbleAngle = allOrcas[index].transform.Find("Bubbles").transform.localEulerAngles;
+        bubbleAngle.x = -65;
+        allOrcas[index].transform.Find("Bubbles").transform.localEulerAngles = new Vector3(bubbleAngle.x, bubbleAngle.y, bubbleAngle.z);
 
         if (!allOrcas[index].TryGetComponent<OrcaOscillation>(out OrcaOscillation oscillationParameters))
         {

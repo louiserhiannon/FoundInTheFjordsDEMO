@@ -142,8 +142,9 @@ public class LadderClimb : MonoBehaviour
         }
 
         yield return new WaitForSeconds(5f);
-
+        Debug.Log("total scene play time is " + Time.time);
         ChangeScene.instance.SceneSwitch("Scene05-360Zodiac");
+
 
     }
 }

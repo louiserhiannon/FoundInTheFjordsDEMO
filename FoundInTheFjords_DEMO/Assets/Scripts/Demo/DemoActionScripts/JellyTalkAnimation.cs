@@ -8,17 +8,14 @@ public class JellyTalkAnimation : MonoBehaviour
 {
     private SkinnedMeshRenderer meshRenderer;
     private Material jellyMouthMaterial;
-    // Black/Black
     [SerializeField] private Color startTopColour = new(0.92f, 0, 1);
     [SerializeField] private Color startBottomColour = new(0, 0.69f, 1);
-    // Black/Yellow
     [SerializeField] private Color midTopColour = new(0, 0.69f, 1);
     [SerializeField] private Color midBottomColour = new(0, 1, 0.2f);
-    // White/Blue
     [SerializeField] private Color endTopColour = new(0, 1, 0.2f);
     [SerializeField] private Color endBottomColour = new(0.92f, 0, 1);
 
-    [SerializeField] private Color OriginalColour = new(0.92f, 0, 1);
+    private Color OriginalColour = new(0.92f, 0, 1);
 
     [SerializeField] private float transitionTime;
     [SerializeField] private float time;
@@ -32,6 +29,7 @@ public class JellyTalkAnimation : MonoBehaviour
         meshRenderer = GetComponent<SkinnedMeshRenderer>();
         jellyMouthMaterial = meshRenderer.materials[2];
         time = 0;
+        OriginalColour = startTopColour;
     }
 
     public void GetTalking()

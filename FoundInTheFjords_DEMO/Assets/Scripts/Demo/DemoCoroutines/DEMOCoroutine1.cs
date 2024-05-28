@@ -10,6 +10,7 @@ using Unity.VisualScripting;
 public class DEMOCoroutine1 : MonoBehaviour
 {
     public AudioSource backgroundMusic;
+    public AudioClip ottering;
     public AudioSource momAudioSource;
     public List<AudioClip> voiceoverClips;
     public ParticleSystem momBubbles;
@@ -94,12 +95,18 @@ public class DEMOCoroutine1 : MonoBehaviour
         yield return new WaitForSeconds(voiceoverClips[0].length);
         momBubbles.Stop();
         orcaMomAnimator.SetTrigger("Trigger_StopTalk");
-
+        yield return new WaitForSeconds(1);
 
         //Start sea motion
         oceanMovement.isMoving = true;
         orcaMomAnimator.SetTrigger("Trigger_Swim");
         momBubbles.transform.localEulerAngles = new Vector3(-65, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+
+        //Start Music
+        backgroundMusic.volume = 0f;
+        backgroundMusic.Play();
+        backgroundMusic.DOFade(0.7f,3);
+        //FadeAudioSource.StartFade(backgroundMusic, 3, 1);
 
         //activate move controls
         ActivateControlsDEMO.AC.ActivateMovementControls();
@@ -220,6 +227,7 @@ public class DEMOCoroutine1 : MonoBehaviour
         {
             yield return null;
         }
+        backgroundMusic.DOFade(0, 3);
         momAudioSource.PlayOneShot(voiceoverClips[3]);
         momBubbles.Play();
         orcaMomAnimator.SetTrigger("Trigger_Talk");
@@ -241,6 +249,7 @@ public class DEMOCoroutine1 : MonoBehaviour
         moveCarousel.minDistance = 0.2f;
         moveCarousel.distance = Vector3.Distance(moveCarousel.targetTransform.position, moveCarousel.transform.position);
         momBubbles.transform.localEulerAngles = new Vector3(-45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        orcaMomAnimator.SetTrigger("Trigger_Swim");
 
         while (moveCarousel.distance > moveCarousel.minDistance)
         {
@@ -248,11 +257,17 @@ public class DEMOCoroutine1 : MonoBehaviour
             yield return null;
         }
         momBubbles.transform.localEulerAngles = new Vector3(0, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        orcaMomAnimator.SetTrigger("Trigger_StopSwim");
+        yield return new WaitForSeconds(2);
 
         //Activate grip button
         ActivateControlsDEMO.AC.ActivateTailslapControls();
         //Show charge panel
         chargeCanvas.DOFade(1, 1);
+        //backgroundMusic.clip = ottering;
+        //backgroundMusic.Play();
+        //backgroundMusic.DOFade(0.5f, 3);
+        //FadeAudioSource.StartFade(backgroundMusic, 2, 1);
         //Play clip 6.1
         momAudioSource.PlayOneShot(voiceoverClips[4]);
         momBubbles.Play();
@@ -267,6 +282,10 @@ public class DEMOCoroutine1 : MonoBehaviour
 
     public IEnumerator MoveGroupOneOrca(int index)
     {
+        Vector3 bubbleAngle = moveGroupOneOrcas[index].transform.Find("Bubbles").transform.localEulerAngles;
+        bubbleAngle.x = 0;
+        moveGroupOneOrcas[index].transform.Find("Bubbles").transform.localEulerAngles = new Vector3(bubbleAngle.x, bubbleAngle.y, bubbleAngle.z);
+
         moveGroupOneOrcas[index].CalculateDistance();
         while (moveGroupOneOrcas[index].distance > moveGroupOneOrcas[index].minDistance)
         {
@@ -278,6 +297,9 @@ public class DEMOCoroutine1 : MonoBehaviour
             moveGroupOneOrcas[index].RotateToAlign();
             yield return null;
         }
+        
+        bubbleAngle.x = -65;
+        moveGroupOneOrcas[index].transform.Find("Bubbles").transform.localEulerAngles = new Vector3 (bubbleAngle.x, bubbleAngle.y, bubbleAngle.z);
 
         orcasInPlace.Add(true);
         moveGroupOneOrcas[index].gameObject.GetComponent<OrcaOscillation>().SetOscillationParameters();
@@ -299,7 +321,7 @@ public class DEMOCoroutine1 : MonoBehaviour
     {
         //flash panel with movement reminder
         youCanMovePanel.DOFade(1, 1);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(7.5f);
         //hide movement reminder panel
         youCanMovePanel.DOFade(0, 1);
         yield return new WaitForSeconds(1);

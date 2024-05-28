@@ -73,7 +73,7 @@ public class ActivateIdentitySwap : MonoBehaviour
     private IEnumerator WaitForEndOfClip()
     {
         yield return new WaitForSeconds(voiceover16.length);
-        claraTalkAnimation.isTalking = true;
+        claraTalkAnimation.isTalking = false;
 
     }
 }

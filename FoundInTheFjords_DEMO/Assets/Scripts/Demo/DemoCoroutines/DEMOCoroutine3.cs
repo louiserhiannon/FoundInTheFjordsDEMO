@@ -38,6 +38,7 @@ public class DEMOCoroutine3 : MonoBehaviour
     private List<bool> slidings;
     public CanvasGroup interactWithSnorkelerPanel;
     public JellyTalkAnimation claraTalkAnimation;
+    public CanvasGroup hiImClara;
     //additional variables for testing
     //public GameObject fishingBoat;
     //public GameObject Zodiac;
@@ -98,14 +99,16 @@ public class DEMOCoroutine3 : MonoBehaviour
         //Gradually fade ship sounds
         shipDrone.DOFade(0, 15);
         shipClanging.DOFade(0, 15);
-        
+
+        hiImClara.DOFade(1, 1);
+
         ////Mom and player swim to Clara
         //xRRig.transform.SetParent(orcaMom.transform, true);
         orcaMomAnimator.SetTrigger("Trigger_Swim");
         moveToClara.targetTransform = claraTargetTransform;
         moveToClara.minDistance = 6f;
         moveToClara.speed = 3.5f;
-        moveToClara.rotationSpeed = 0.5f;
+        moveToClara.rotationSpeed = 0.3f;
         moveToClara.CalculateDistance();
         while (moveToClara.distance > moveToClara.minDistance)
         {
@@ -129,6 +132,7 @@ public class DEMOCoroutine3 : MonoBehaviour
         orcaMomAnimator.SetTrigger("Trigger_StopSwim");
         //Play Clip 14.1 and make it obvious that Clara is talking
         xRRigBoundingBox.SetParent(null);
+        hiImClara.DOFade(0, 1);
         claraAudioSource.PlayOneShot(voiceoverClips[1]);
         claraTalkAnimation.isTalking = true;
         claraTalkAnimation.GetTalking();

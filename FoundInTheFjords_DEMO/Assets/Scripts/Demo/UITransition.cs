@@ -82,7 +82,7 @@ public class UITransition : MonoBehaviour
         backgroundMusic.clip = ottering;
         backgroundMusic.volume = 0;
         backgroundMusic.Play();
-        backgroundMusic.DOFade(1f, 3.0f);
+        backgroundMusic.DOFade(0.7f, 3);
 
         //Show Counter Panel
         herringCounterCanvas.GetComponentInChildren<CanvasGroup>().DOFade(1f, 1f);
