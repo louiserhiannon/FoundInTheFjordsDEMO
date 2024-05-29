@@ -31,7 +31,7 @@ public class EatingControllerDEMO : MonoBehaviour
     //public bool eat_fishing = false;
     public Transform herringStorageAreaCarousel;
     public Transform herringStorageAreaFishing;
-    public DEMOCoroutine3 demoCoroutine03;
+    //public DEMOCoroutine3 demoCoroutine03;
     private bool isOpen = false;
     private Scene scene;
 
@@ -122,7 +122,7 @@ public class EatingControllerDEMO : MonoBehaviour
                 Debug.Log("target reached");
                 targetActive = false;
                 herringCounter.displayActive = false;
-                StartCoroutine(demoCoroutine03.DEMOCoroutine03());
+                StartCoroutine(DEMOCoroutine3.coroutine03.DEMOCoroutine03());
             }
         }
     }

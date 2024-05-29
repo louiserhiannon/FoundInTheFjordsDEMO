@@ -78,6 +78,8 @@ public class UITransition : MonoBehaviour
         ActivateControlsDEMO.AC.ActivateEatControls();
         EatingControllerDEMO.ECDemo.targetActive = true;
         EatingControllerDEMO.ECDemo.herringLifetime = 45;
+        LocomotionControllerDEMO.LCDemo.limitLeft = 5;
+        LocomotionControllerDEMO.LCDemo.limitDepth = -2;
 
         backgroundMusic.clip = ottering;
         backgroundMusic.volume = 0;

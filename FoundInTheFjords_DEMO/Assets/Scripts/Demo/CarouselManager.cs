@@ -9,7 +9,7 @@ public class CarouselManager : MonoBehaviour
     public GameObject axisPrefab;
     public int numOrca;
     public List<GameObject> allAxes;
-    public Transform carouselTransform;
+    public Transform orcaTransform;
     public bool stunHerring = true;
     //public GameObject orcaPrefab;
     //public GameObject[] orcas;
@@ -66,10 +66,34 @@ public class CarouselManager : MonoBehaviour
         //instantiate "numOrca" of axes at random orientations
         for(int i = 0; i < numOrca; i++)
         {
-            Quaternion axisRotation = Random.rotation;
-            allAxes.Add(Instantiate(axisPrefab, transform.position, axisRotation, carouselTransform));
+            //Vector3 orca1 = new Vector3(100, 0, 90);
+            //Vector3 orca2 = new Vector3(-130, 50, 90);
+            //Vector3 orca3 = new Vector3(0, -220, 90);
 
-            allAxes[i].GetComponentInChildren<CarouselMotion>().SetRadialOffset(i);
+            Vector3 orca1 = new Vector3(0, 0, 0);
+            Vector3 orca2 = new Vector3(0, -120, 40);
+            Vector3 orca3 = new Vector3(-8, -252, 40);
+
+            Quaternion axisRotation;
+            if(i == 0)
+            {
+                axisRotation = Quaternion.Euler(orca1);
+            }
+            else if (i == 1)
+            {
+                axisRotation = Quaternion.Euler(orca2);
+            }
+            else
+            {
+                axisRotation = Quaternion.Euler(orca3);
+            }
+            allAxes.Add(Instantiate(axisPrefab, transform.position, axisRotation, orcaTransform));
+            //change parent to orca transform, child of carousel transform
+            //make orca tranform rotate
+            //calculate quaternion from direction
+            
+
+            //allAxes[i].GetComponentInChildren<CarouselMotion>().SetRadialOffset(i);
             //hide them (look at earth elevator for code)
 
         }

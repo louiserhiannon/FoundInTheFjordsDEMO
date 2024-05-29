@@ -8,6 +8,7 @@ using UnityEngine.Rendering.UI;
 
 public class DEMOCoroutine3 : MonoBehaviour
 {
+    public static DEMOCoroutine3 coroutine03;
     public CanvasGroup herringCounterCanvas;
     public GameObject orcaMom;
     private Animator orcaMomAnimator;
@@ -49,6 +50,7 @@ public class DEMOCoroutine3 : MonoBehaviour
 
     private void Awake()
     {
+        coroutine03 = this;
         orcaMomAnimator = orcaMom.GetComponent<Animator>();
         momBubbles = orcaMom.GetComponentInChildren<ParticleSystem>();
         slidings = new List<bool>();
@@ -101,6 +103,8 @@ public class DEMOCoroutine3 : MonoBehaviour
         shipClanging.DOFade(0, 15);
 
         hiImClara.DOFade(1, 1);
+        LocomotionControllerDEMO.LCDemo.limitLeft = 3.5f;
+        LocomotionControllerDEMO.LCDemo.limitDepth = -1;
 
         ////Mom and player swim to Clara
         //xRRig.transform.SetParent(orcaMom.transform, true);

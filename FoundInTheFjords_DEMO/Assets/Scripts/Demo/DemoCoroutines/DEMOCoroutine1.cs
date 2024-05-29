@@ -6,9 +6,11 @@ using DG.Tweening;
 using System;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 
 public class DEMOCoroutine1 : MonoBehaviour
 {
+    public static DEMOCoroutine1 coroutine01;
     public AudioSource backgroundMusic;
     public AudioClip ottering;
     public AudioSource momAudioSource;
@@ -36,12 +38,14 @@ public class DEMOCoroutine1 : MonoBehaviour
     public Transform faceCarousel;
     public Transform noraCentre;
     public CanvasGroup chargeCanvas;
-    public DEMOCoroutine2 coroutine02;
+    //public DEMOCoroutine2 coroutine02;
     private List<bool> orcasInPlace;
     private WaveManager waveManager;
+    public float carouselDistance;
 
     private void Start()
     {
+        coroutine01 = this;
         orcasInPlace = new List<bool>();
         carouselTransform.SetActive(false);
         carouselTransform.GetComponentInChildren<FlockManager_Circular>().enabled = false;
@@ -244,16 +248,21 @@ public class DEMOCoroutine1 : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         //move closer to carousel
-        moveCarousel.targetTransform = carouselTarget;
-        moveCarousel.speed = 1.5f;
-        moveCarousel.minDistance = 0.2f;
-        moveCarousel.distance = Vector3.Distance(moveCarousel.targetTransform.position, moveCarousel.transform.position);
-        momBubbles.transform.localEulerAngles = new Vector3(-45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        //moveCarousel.targetTransform = carouselTarget;
+        //moveCarousel.speed = 1.5f;
+        //moveCarousel.minDistance = 0.2f;
+        //moveCarousel.distance = Vector3.Distance(moveCarousel.targetTransform.position, moveCarousel.transform.position);
+        float distance = Vector3.Distance(carouselTransform.transform.position, moveMomToTarget.transform.position);
+        carouselDistance = distance;
+        float speed = 1.5f;
+        //momBubbles.transform.localEulerAngles = new Vector3(-45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
         orcaMomAnimator.SetTrigger("Trigger_Swim");
 
-        while (moveCarousel.distance > moveCarousel.minDistance)
+        while (distance > 9)
         {
-            moveCarousel.TranslateToMinimumDistance();
+            //moveCarousel.TranslateToMinimumDistance();
+            moveMomToTarget.transform.Translate(speed * Time.deltaTime * Vector3.forward);
+            distance = Vector3.Distance(moveMomToTarget.transform.position, carouselTransform.transform.position);
             yield return null;
         }
         momBubbles.transform.localEulerAngles = new Vector3(0, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);

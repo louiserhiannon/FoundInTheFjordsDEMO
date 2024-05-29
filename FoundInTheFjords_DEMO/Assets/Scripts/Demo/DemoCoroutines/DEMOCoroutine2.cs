@@ -5,10 +5,12 @@ using DG.Tweening;
 using UnityEngine.XR.Interaction.Toolkit;
 using Unity.VisualScripting;
 using System;
+using UnityEditor.Rendering;
 //using System.Diagnostics;
 
 public class DEMOCoroutine2 : MonoBehaviour
 {
+    public static DEMOCoroutine2 coroutine02;
     public AudioSource backgroundMusic;
     public AudioSource shipDroneSoundSource;
     public AudioSource shipClangingSoundSource;
@@ -61,13 +63,15 @@ public class DEMOCoroutine2 : MonoBehaviour
     public CanvasGroup chargeCanvas;
     public CanvasGroup eatFishInstructionalPanel;
     public CanvasGroup readyButton;
-    public DEMOCoroutine3 coroutine03;
+    //public DEMOCoroutine3 coroutine03;
+    //public DEMOCoroutine1 coroutine01;
     private List<bool> orcasBackInPlace;
     private WaveManager waveManager;
 
 
     private void Awake()
     {
+        coroutine02 = this;
         highlightMaterialAnna.enabled = false;
         highlightMaterialMagnus.enabled = false;
         humpback.SetActive(false);
@@ -102,16 +106,20 @@ public class DEMOCoroutine2 : MonoBehaviour
         //reparent stunnedHerring
         stunnedHerring.transform.SetParent(carouselTransform.transform, true);
         //move carousel back
-        moveCarousel.targetTransform = carouselTarget;
-        moveCarousel.speed = 1.2f;
-        moveCarousel.minDistance = 0.2f;
-        moveCarousel.distance = Vector3.Distance(moveCarousel.targetTransform.position, moveCarousel.transform.position);
-        momBubbles.transform.localEulerAngles = new Vector3(45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        //moveCarousel.targetTransform = carouselTarget;
+        //moveCarousel.speed = 1.2f;
+        //moveCarousel.minDistance = 0.2f;
+        //moveCarousel.distance = Vector3.Distance(moveCarousel.targetTransform.position, moveCarousel.transform.position);
+        //momBubbles.transform.localEulerAngles = new Vector3(45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        float distance = DEMOCoroutine1.coroutine01.carouselDistance - 9;
+        float speed = 1.5f;
         momAnimator.SetTrigger("Trigger_Swim");
 
-        while (moveCarousel.distance > moveCarousel.minDistance)
+        while (distance > 0)
         {
-            moveCarousel.TranslateToMinimumDistance();
+            //moveCarousel.TranslateToMinimumDistance();
+            rotateMom.transform.Translate(speed * Time.deltaTime * -Vector3.forward);
+            distance -= speed * Time.deltaTime;
             yield return null;
         }
         momBubbles.transform.localEulerAngles = new Vector3(0, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
@@ -323,9 +331,7 @@ public class DEMOCoroutine2 : MonoBehaviour
             bubbleAngle.x = 0;
             allOrcas[i].transform.Find("Bubbles").transform.localEulerAngles = new Vector3(bubbleAngle.x, bubbleAngle.y, bubbleAngle.z);
         }
-
-
-        
+              
         //start herring swimming
         SpawnEatableHerring.SH.spawnHerring = true;
         
@@ -397,7 +403,7 @@ public class DEMOCoroutine2 : MonoBehaviour
         for (int i = 0; i < CarouselManager.CM.allAxes.Count; i++)
         {
             //stop axis rotation
-            CarouselManager.CM.allAxes[i].GetComponent<RotateCarouselAxis>().isRotating = false;
+            //CarouselManager.CM.allAxes[i].GetComponent<RotateCarouselAxis>().isRotating = false;
             //remove model from parent transform
             var model = CarouselManager.CM.allAxes[i].transform.Find("Orca_Shoaling_Animated");
             model.SetParent(groupTwoOrcaParent);

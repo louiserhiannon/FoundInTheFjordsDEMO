@@ -36,7 +36,7 @@ public class TailslapControllerDEMO : MonoBehaviour
     public HapticController hapticLeft;
     public HapticController hapticRight;
     public GameObject stunnedHerring;
-    public DEMOCoroutine2 demoCoroutine2;
+    //public DEMOCoroutine2 demoCoroutine2;
     private Scene scene;
 
 
@@ -176,7 +176,7 @@ public class TailslapControllerDEMO : MonoBehaviour
         if (scene.name == "DEMO")
         {
             ActivateControlsDEMO.AC.DeActivateTailslapControls();
-            StartCoroutine(demoCoroutine2.DEMOCoroutine02());
+            StartCoroutine(DEMOCoroutine2.coroutine02.DEMOCoroutine02());
         }
 
         
