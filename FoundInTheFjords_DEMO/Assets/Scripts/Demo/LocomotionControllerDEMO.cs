@@ -38,8 +38,8 @@ public class LocomotionControllerDEMO : MonoBehaviour
     public CanvasGroup surfsUpPanel;
     private int counter = 0;
     public float minControllerOffset;
-    [SerializeField] private float rightControllerPositionX;
-    [SerializeField] private float leftControllerPositionX;
+    //[SerializeField] private float rightControllerPositionX;
+    //[SerializeField] private float leftControllerPositionX;
     private Scene scene;
     //[SerializeField] private bool rotateBackX;
     //[SerializeField] private bool rotateBackY;
@@ -80,15 +80,17 @@ public class LocomotionControllerDEMO : MonoBehaviour
     {
         //Vector2 thumbstickPosition = moveSpeedReference.action.ReadValue<Vector2>();
         float gripValue = moveSpeedReference.action.ReadValue<float>();
-        rightControllerPositionX = rightController.localPosition.x;
-        leftControllerPositionX = leftController.localPosition.x;
+        //rightControllerPositionX = rightController.localPosition.x;
+        //leftControllerPositionX = leftController.localPosition.x;
         float cameraY = Camera.main.transform.forward.y;
+        float cameraX = Camera.main.transform.forward.x;
         //cameraAngle = Camera.main.transform.eulerAngles.x;
         //cameraAngleRad = Mathf.Deg2Rad * cameraAngle;
         //cameraSin = Mathf.Sin(cameraAngleRad);
         MoveUp(gripValue, cameraY);
-        MoveRight(gripValue, rightControllerPositionX, leftControllerPositionX);
-       
+        //MoveRight(gripValue, rightControllerPositionX, leftControllerPositionX);
+        MoveRight(gripValue, cameraX);
+
         if (scene.name == "RootMenu")
         {
             if(gripValue > 0.05f)
@@ -189,35 +191,51 @@ public class LocomotionControllerDEMO : MonoBehaviour
         
     }
 
-    public virtual void MoveRight(float relativeSidewaysSpeed, float rightPosition, float leftPosition)
+    public virtual void MoveRight(float relativeSidewaysSpeed, float xDirection)
     {
-        sidewaysSpeed = relativeSidewaysSpeed * maxSpeed;
 
-        if (rightPosition > minControllerOffset || leftPosition < -minControllerOffset)
+        sidewaysSpeed = relativeSidewaysSpeed * maxSpeed * xDirection;
+
+        if (xrRig.localPosition.x >= limitLeft && xrRig.localPosition.x <= limitRight)
         {
-            if (xrRig.localPosition.x >= limitLeft && xrRig.localPosition.x <= limitRight)
-            {
-                if (rightPosition > -leftPosition)
-                {
-                    xrRig.Translate(Time.deltaTime * sidewaysSpeed, 0, 0);
-
-                }
-                else
-                {
-                    xrRig.Translate(- Time.deltaTime * sidewaysSpeed, 0, 0);
-                }
-            }
+            xrRig.Translate(Time.deltaTime * sidewaysSpeed * Vector3.right);
 
         }
+        else if (xrRig.localPosition.x < limitLeft && sidewaysSpeed > 0)
+        {
+            xrRig.Translate(Time.deltaTime * sidewaysSpeed * Vector3.right);
+        }
+        else if (xrRig.localPosition.x > limitRight && sidewaysSpeed < 0)
+        {
+            xrRig.Translate(Time.deltaTime * sidewaysSpeed * Vector3.right);
+        }
+        //sidewaysSpeed = relativeSidewaysSpeed * maxSpeed;
 
-        else if (xrRig.localPosition.x < limitLeft && rightPosition > -leftPosition)
-        {
-            xrRig.Translate(Time.deltaTime * sidewaysSpeed, 0, 0);
-        }
-        else if (xrRig.localPosition.x > limitRight && leftPosition < -rightPosition)
-        {
-            xrRig.Translate(-Time.deltaTime * sidewaysSpeed, 0, 0);
-        }
+        //if (rightPosition > minControllerOffset || leftPosition < -minControllerOffset)
+        //{
+        //    if (xrRig.localPosition.x >= limitLeft && xrRig.localPosition.x <= limitRight)
+        //    {
+        //        if (rightPosition > -leftPosition)
+        //        {
+        //            xrRig.Translate(Time.deltaTime * sidewaysSpeed, 0, 0);
+
+        //        }
+        //        else
+        //        {
+        //            xrRig.Translate(- Time.deltaTime * sidewaysSpeed, 0, 0);
+        //        }
+        //    }
+
+        //}
+
+        //else if (xrRig.localPosition.x < limitLeft && rightPosition > -leftPosition)
+        //{
+        //    xrRig.Translate(Time.deltaTime * sidewaysSpeed, 0, 0);
+        //}
+        //else if (xrRig.localPosition.x > limitRight && leftPosition < -rightPosition)
+        //{
+        //    xrRig.Translate(-Time.deltaTime * sidewaysSpeed, 0, 0);
+        //}
 
     }
 

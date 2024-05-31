@@ -73,6 +73,7 @@ public class TailslapControllerDEMO : MonoBehaviour
         {
             chargedSliders[i].enabled = false;
         }
+        chargedText.text = "Charge Me";
         scene = SceneManager.GetActiveScene();
     }
 
@@ -111,6 +112,7 @@ public class TailslapControllerDEMO : MonoBehaviour
         for (int i = 0; i < chargedSliders.Count; i++)
         {
             chargingSliders[i].rectTransform.anchorMax = new Vector2(sliderPosition, chargingSliders[i].rectTransform.anchorMax.y);
+            
         }
 
         if (slapCharge > tailChargeRequired) //there must be a better way of doing this that doesn't involve using the same if statement twice...
@@ -124,6 +126,10 @@ public class TailslapControllerDEMO : MonoBehaviour
 
 
         }
+        else
+        {
+            chargedText.text = "Charge Me";
+        }
         
 
         if (value < 0.05f)
@@ -136,6 +142,7 @@ public class TailslapControllerDEMO : MonoBehaviour
                 {
                     mirrorOrcaAnimator.SetTrigger("Trigger_TailSlap");
                     Debug.Log("tailslap animation should be running");
+                    
                 }
                 if (scene.name == ("DEMO"))
                 {
@@ -171,7 +178,7 @@ public class TailslapControllerDEMO : MonoBehaviour
             yield return null;
         }
 
-        //tailSlapPanel.DOFade(0, 1f);
+        tailSlapPanel.DOFade(0, 1f);
 
         if (scene.name == "DEMO")
         {

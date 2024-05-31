@@ -5,6 +5,7 @@ using System.Security.Principal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EatingControllerDEMO : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class EatingControllerDEMO : MonoBehaviour
     public Transform herringStorageAreaFishing;
     //public DEMOCoroutine3 demoCoroutine03;
     private bool isOpen = false;
+    public TMP_Text biteStatus;
     private Scene scene;
 
     private void Awake()
@@ -51,6 +53,11 @@ public class EatingControllerDEMO : MonoBehaviour
         {
             mirrorOrcaAnimator = mirrorOrca.GetComponent<Animator>();
         }
+        if (biteStatus != null)
+        {
+            biteStatus.text = "Mouth Open";
+        }
+        
     }
 
 
@@ -179,6 +186,7 @@ public class EatingControllerDEMO : MonoBehaviour
         {
             //set bool to identify eatable fish to true;
             isOpen = true;
+            biteStatus.text = "Mouth Open";
         }
     }
 
@@ -230,6 +238,7 @@ public class EatingControllerDEMO : MonoBehaviour
             }
             //then set bool to identify eatable fish to false;
             isOpen = false;
+            biteStatus.text = "Mouth Closed";
         }
             
     }

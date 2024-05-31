@@ -100,7 +100,7 @@ public class DEMOCoroutine2 : MonoBehaviour
         //wait a few seconds
         yield return new WaitForSeconds(3);
         //Hide charge panel
-        chargeCanvas.DOFade(0, 1);
+        //chargeCanvas.DOFade(0, 1);
         
 
         //reparent stunnedHerring
