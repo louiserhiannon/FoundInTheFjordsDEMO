@@ -103,16 +103,16 @@ public class DEMOCoroutine3 : MonoBehaviour
         shipClanging.DOFade(0, 15);
 
         hiImClara.DOFade(1, 1);
-        //LocomotionControllerDEMO.LCDemo.limitLeft = 3.5f;
-        //LocomotionControllerDEMO.LCDemo.limitDepth = -1;
+        LocomotionControllerDEMO.LCDemo.limitLeft = -6.5f;
+        LocomotionControllerDEMO.LCDemo.limitDepth = -0.5f;
 
         ////Mom and player swim to Clara
-        xRRigBoundingBox.transform.SetParent(orcaMom.transform, true); //should be unnecessary, but just in case it gets unparented somewhere
+        //xRRigBoundingBox.transform.SetParent(orcaMom.transform, true); //should be unnecessary, but just in case it gets unparented somewhere
         orcaMomAnimator.SetTrigger("Trigger_Swim");
         moveToClara.targetTransform = claraTargetTransform;
         moveToClara.minDistance = 6f;
-        moveToClara.speed = 3.5f;
-        moveToClara.rotationSpeed = 0.3f;
+        moveToClara.speed = 2.5f;
+        moveToClara.rotationSpeed = 0.1f;
         moveToClara.CalculateDistance();
         while (moveToClara.distance > moveToClara.minDistance)
         {

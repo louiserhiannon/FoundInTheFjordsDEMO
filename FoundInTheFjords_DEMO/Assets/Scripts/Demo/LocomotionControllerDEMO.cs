@@ -101,6 +101,8 @@ public class LocomotionControllerDEMO : MonoBehaviour
                     mirrorOrcaAnimator.SetBool("isSwimming", true);
                     
                 }
+                
+
                 //if (cameraY > 0.1f || cameraY < -0.1f)
                 //{
                 //    //Debug.Log(cameraY);
@@ -140,6 +142,8 @@ public class LocomotionControllerDEMO : MonoBehaviour
                 mirrorOrcaAnimator.SetBool("isSwimming", false);
             }
 
+           
+
 
 
         }
@@ -149,25 +153,25 @@ public class LocomotionControllerDEMO : MonoBehaviour
 
     public virtual void MoveUp(float relativeUpSpeed, float yDirection)
     {
-        upDownSpeed = 3f * relativeUpSpeed * maxSpeed * yDirection;   
+        upDownSpeed = 2f * relativeUpSpeed * maxSpeed * yDirection;   
        
-        if (xrRig.localPosition.y >= limitDepth && xrRig.localPosition.y <= limitHeight)
+        if (xrRig.position.y >= limitDepth && xrRig.position.y <= limitHeight)
         {
             xrRig.Translate(Time.deltaTime * upDownSpeed * xrRig.up, Space.Self);
 
         }
-        else if(xrRig.localPosition.y < limitDepth && upDownSpeed > 0)
+        else if(xrRig.position.y < limitDepth && upDownSpeed > 0)
         { 
             xrRig.Translate(Time.deltaTime * upDownSpeed * xrRig.up, Space.Self);
         }
-        else if(xrRig.localPosition.y > limitHeight && upDownSpeed < 0)
+        else if(xrRig.position.y > limitHeight && upDownSpeed < 0)
         {
             xrRig.Translate(Time.deltaTime * upDownSpeed * xrRig.up, Space.Self);
         }
 
         if(surfsUpPanel != null)
         {
-            if (xrRig.localPosition.y >= surfableDepth)
+            if (xrRig.position.y >= surfableDepth)
             {
                 if (!isSurfable)
                 {
@@ -194,7 +198,7 @@ public class LocomotionControllerDEMO : MonoBehaviour
     public virtual void MoveRight(float relativeSidewaysSpeed, float xDirection)
     {
 
-        sidewaysSpeed = relativeSidewaysSpeed * maxSpeed * xDirection;
+        sidewaysSpeed = 2f * relativeSidewaysSpeed * maxSpeed * xDirection;
 
         if (xrRig.localPosition.x >= limitLeft && xrRig.localPosition.x <= limitRight)
         {

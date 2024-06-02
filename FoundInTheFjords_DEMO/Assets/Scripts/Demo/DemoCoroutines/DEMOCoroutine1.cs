@@ -114,13 +114,19 @@ public class DEMOCoroutine1 : MonoBehaviour
 
         //activate move controls
         ActivateControlsDEMO.AC.ActivateMovementControls();
-        StartCoroutine(ManageInfoPanels());
+        
                
         //move and rotate Group 1 orca into place
         for (int i = 0; i < moveGroupOneOrcas.Count; i++)
         {
             moveGroupOneOrcas[i].targetTransform = groupOneOrcaGroupTargets[i];
             StartCoroutine(MoveGroupOneOrca(i));
+        }
+
+        //show orca mom panels
+        foreach (CanvasGroup panel in meetMomCanvas.GetComponentsInChildren<CanvasGroup>())
+        {
+            panel.DOFade(1, 2);
         }
         //Rotate mom to face forwards
         moveMomToTarget.targetTransform = momRotateTarget;
@@ -129,8 +135,7 @@ public class DEMOCoroutine1 : MonoBehaviour
             moveMomToTarget.RotateToAlign();
             yield return null;
         }
-
-        
+              
 
         //move mom closer to Nora
         moveMomToTarget.targetTransform = momMidTarget;
@@ -144,7 +149,7 @@ public class DEMOCoroutine1 : MonoBehaviour
             //Debug.Log("mom should be moving");
             yield return null;
         }
-
+        StartCoroutine(ManageInfoPanels());
         moveMomToTarget.speed = 2f;
         
 
@@ -328,18 +333,20 @@ public class DEMOCoroutine1 : MonoBehaviour
 
     private IEnumerator ManageInfoPanels()
     {
+        
+        //Show mom info panel
+        foreach (CanvasGroup panel in meetMomCanvas.GetComponentsInChildren<CanvasGroup>())
+        {
+            panel.DOFade(0, 1);
+        }
+        yield return new WaitForSeconds(1);
+
         //flash panel with movement reminder
         youCanMovePanel.DOFade(1, 1);
         yield return new WaitForSeconds(7.5f);
         //hide movement reminder panel
         youCanMovePanel.DOFade(0, 1);
-        yield return new WaitForSeconds(1);
-
-        //Show mom info panel
-        foreach (CanvasGroup panel in meetMomCanvas.GetComponentsInChildren<CanvasGroup>())
-        {
-            panel.DOFade(1, 1);
-        }
+        
     }
 
     //public IEnumerator RecentreNora()

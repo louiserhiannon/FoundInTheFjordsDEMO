@@ -111,21 +111,7 @@ public class DEMOCoroutine2 : MonoBehaviour
         //moveCarousel.minDistance = 0.2f;
         //moveCarousel.distance = Vector3.Distance(moveCarousel.targetTransform.position, moveCarousel.transform.position);
         //momBubbles.transform.localEulerAngles = new Vector3(45, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
-        float distance = DEMOCoroutine1.coroutine01.carouselDistance - 9;
-        float speed = 1.5f;
-        momAnimator.SetTrigger("Trigger_Swim");
-
-        while (distance > 0)
-        {
-            //moveCarousel.TranslateToMinimumDistance();
-            rotateMom.transform.Translate(speed * Time.deltaTime * -Vector3.forward);
-            distance -= speed * Time.deltaTime;
-            yield return null;
-        }
-        momBubbles.transform.localEulerAngles = new Vector3(0, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
-        momAnimator.SetTrigger("Trigger_StopSwim");
-
-        ActivateControlsDEMO.AC.ActivateMovementControls();
+        
         
         
         //Play humpback Sound
@@ -391,11 +377,28 @@ public class DEMOCoroutine2 : MonoBehaviour
 
     private IEnumerator WaitForHumpbackToStart()
     {
-        yield return new WaitForSeconds(voiceoverClips[1].length - 5f);
+        yield return new WaitForSeconds(voiceoverClips[1].length - 6f);
         momAudioSource.PlayOneShot(voiceoverClips[2]);
         momAnimator.SetTrigger("Trigger_Talk");
         momBubbles.Play();
         StartCoroutine(WaitForEndOfClip(voiceoverClips[2].length));
+
+        //move back to rest position
+        float distance = DEMOCoroutine1.coroutine01.carouselDistance - 9;
+        float speed = 1.5f;
+        momAnimator.SetTrigger("Trigger_Swim");
+
+        while (distance > 0)
+        {
+            //moveCarousel.TranslateToMinimumDistance();
+            rotateMom.transform.Translate(speed * Time.deltaTime * -Vector3.forward);
+            distance -= speed * Time.deltaTime;
+            yield return null;
+        }
+        momBubbles.transform.localEulerAngles = new Vector3(0, momBubbles.transform.localEulerAngles.y, momBubbles.transform.localEulerAngles.z);
+        momAnimator.SetTrigger("Trigger_StopSwim");
+
+        ActivateControlsDEMO.AC.ActivateMovementControls();
     }
     public IEnumerator OrcaSwimAway()
     {

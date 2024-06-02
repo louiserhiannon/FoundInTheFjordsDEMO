@@ -266,6 +266,7 @@ public class DEMOCoroutine4 : MonoBehaviour
         float faceAngle = Quaternion.LookRotation(faceTarget).eulerAngles.y;
         
         moveToLadder.targetTransform = clara;
+        moveToLadder.rotationSpeed = 0.2f;
 
         while (xRRig.eulerAngles.y < faceAngle - 2 || xRRig.eulerAngles.y > faceAngle + 2)
         {
@@ -306,6 +307,7 @@ public class DEMOCoroutine4 : MonoBehaviour
         //move to zodiac ladder
         moveToLadder.targetTransform = ladderTargetTransform;
         moveToLadder.minDistance = 0.2f;
+        moveToLadder.speed = 0.5f;
         while (moveToLadder.distance > moveToLadder.minDistance)
         {
             moveToLadder.MoveToMinimumDistance();
