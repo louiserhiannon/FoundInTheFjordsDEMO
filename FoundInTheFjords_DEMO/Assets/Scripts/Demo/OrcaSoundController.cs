@@ -23,7 +23,7 @@ public class OrcaSoundController : MonoBehaviour
     {
         while(isCalling) //the coroutine keeps looping as long as isCalling is true, which is as long as the game object exists.
         {
-            float pause = Random.Range(minCallPause, maxCallPause); //this sets up a temporary float variable and assigns it a random decimal number between 2 and 5 (you can specify what you want that to be)
+            float pause = GetPause();
             yield return new WaitForSeconds(pause); //waits for the calculated number of seconds
             int index = GetClipIndex(); //sets up a temporary int variable and assigns it a random value by calling the "GetClipIndex" method below (note that random ranges for ints are inclusive of the min value and exclusive of the max value)
             audioSource.PlayOneShot(OrcaCalls.instance.calls[index]);//plays the randomly selected call file
@@ -36,5 +36,10 @@ public class OrcaSoundController : MonoBehaviour
     private int GetClipIndex()
     {
         return Random.Range(0, OrcaCalls.instance.calls.Count); //returns a random integer "index" for the list of calls.
+    }
+
+    private float GetPause()
+    {
+        return Random.Range(minCallPause, maxCallPause); //this sets up a temporary float variable and assigns it a random decimal number between 2 and 5 (you can specify what you want that to be)
     }
 }

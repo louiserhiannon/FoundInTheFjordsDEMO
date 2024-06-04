@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class ActivateIdentitySwap : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class ActivateIdentitySwap : MonoBehaviour
     public int count = 0;
     private int maxCount = 6;
     public bool snorkelerActive = false;
+    public CanvasGroup interactWithSnorkelerPanel;
     [SerializeField] private bool counterActive = true;
     //public TMP_Text counter;
     public DEMOCoroutine4 coroutine04; //need to update for demo to call new IdentitySwapDEMO script
@@ -43,6 +45,7 @@ public class ActivateIdentitySwap : MonoBehaviour
                         //if statement added for demo
                         if(count == 2)
                         {
+                            interactWithSnorkelerPanel.DOFade(0, 1);
                             claraAudioSource.PlayOneShot(voiceover16);
                             claraTalkAnimation.isTalking = true;
                             claraTalkAnimation.GetTalking();

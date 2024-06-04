@@ -16,7 +16,7 @@ public class DEMOCoroutine3 : MonoBehaviour
     public GameObject xRRig;
     public MoveToObject moveToClara;
     public Transform claraTargetTransform;
-    public Transform rotateToClara;
+    public Transform claraTransformActual;
     public Transform xRRigBoundingBox;
     public AudioSource claraAudioSource;
     public AudioSource momAudioSource;
@@ -110,37 +110,45 @@ public class DEMOCoroutine3 : MonoBehaviour
         //xRRigBoundingBox.transform.SetParent(orcaMom.transform, true); //should be unnecessary, but just in case it gets unparented somewhere
         orcaMomAnimator.SetTrigger("Trigger_Swim");
         moveToClara.targetTransform = claraTargetTransform;
-        moveToClara.minDistance = 6f;
+        moveToClara.minDistance = 8f;
+        moveToClara.viewDistance = 40f;
         moveToClara.speed = 2.5f;
         moveToClara.rotationSpeed = 0.1f;
         moveToClara.CalculateDistance();
+        while (moveToClara.distance > moveToClara.viewDistance)
+        {
+            moveToClara.MoveToMinimumDistance();
+            yield return null;
+        }
+        claraTransformActual.Find("SDGJelly_Clara").gameObject.SetActive(true);
         while (moveToClara.distance > moveToClara.minDistance)
         {
             moveToClara.MoveToMinimumDistance();
             yield return null;
         }
 
-        
         //rotate to face Actual Clara
-        moveToClara.targetTransform = rotateToClara;
-        Vector3 direction = moveToClara.targetTransform.position - moveToClara.transform.position;
-        float angle = Quaternion.LookRotation(direction).eulerAngles.y;
+        //moveToClara.targetTransform = rotateToClara;
+        //Vector3 direction = moveToClara.targetTransform.position - moveToClara.transform.position;
+        //float angle = Quaternion.LookRotation(direction).eulerAngles.y;
 
-        while (moveToClara.transform.eulerAngles.y < angle - 2 || moveToClara.transform.eulerAngles.y > angle + 2)
-        {
-            //Debug.Log("Mom should be rotating");
-            moveToClara.RotateToFaceObject();
-            yield return null;
-        }
+        //while (moveToClara.transform.eulerAngles.y < angle - 2 || moveToClara.transform.eulerAngles.y > angle + 2)
+        //{
+        //    //Debug.Log("Mom should be rotating");
+        //    moveToClara.RotateToFaceObject();
+        //    yield return null;
+        //}
 
         orcaMomAnimator.SetTrigger("Trigger_StopSwim");
         //Play Clip 14.1 and make it obvious that Clara is talking
         xRRigBoundingBox.SetParent(null);
-        hiImClara.DOFade(0, 1);
+        
         claraAudioSource.PlayOneShot(voiceoverClips[1]);
         claraTalkAnimation.isTalking = true;
         claraTalkAnimation.GetTalking();
-        yield return new WaitForSeconds(voiceoverClips[1].length);
+        yield return new WaitForSeconds(voiceoverClips[1].length / 3);
+        hiImClara.DOFade(0, 1);
+        yield return new WaitForSeconds(voiceoverClips[1].length / 3 * 2);
         claraTalkAnimation.isTalking = false;
         //Play Clip 14.2
         driverAudioSource.PlayOneShot(voiceoverClips[2]);
@@ -177,12 +185,13 @@ public class DEMOCoroutine3 : MonoBehaviour
         ActivateControlsDEMO.AC.DeActivateMovementControls();
         var recentreNora = xRRig.GetComponent<MoveToObject>();
         recentreNora.targetTransform = noraRecentreTarget;
-        recentreNora.CalculateDistance();
-        while (recentreNora.distance > recentreNora.minDistance)
-        {
-            recentreNora.MoveToMinimumDistance();
-            yield return null;
-        }
+        recentreNora.rotationSpeed = 0.2f;
+        //recentreNora.CalculateDistance();
+        //while (recentreNora.distance > recentreNora.minDistance)
+        //{
+        //    recentreNora.MoveToMinimumDistance();
+        //    yield return null;
+        //}
 
         while (xRRig.transform.eulerAngles.y < recentreNora.targetTransform.eulerAngles.y - 2 || xRRig.transform.eulerAngles.y > recentreNora.targetTransform.eulerAngles.y + 2)
         {
@@ -236,8 +245,7 @@ public class DEMOCoroutine3 : MonoBehaviour
 
         activateIdentitySwap.snorkelerActive = true;
         interactWithSnorkelerPanel.DOFade(1,1);
-        yield return new WaitForSeconds(4);
-        interactWithSnorkelerPanel.DOFade(0, 1);
+        
 
         //fake transition to coroutine 4
         //StartCoroutine(coroutine04.SwitchBodies());

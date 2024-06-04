@@ -55,6 +55,8 @@ public class DEMOCoroutine4 : MonoBehaviour
     public GameObject leftLadderGrabPoint;
     public GameObject rightLadderGrabPoint;
     public JellyTalkAnimation claraTalkAnimation;
+    private bool breakCoroutine01 = false;
+    private bool breakCoroutine02 = false;
 
     private void Awake()
     {
@@ -258,23 +260,15 @@ public class DEMOCoroutine4 : MonoBehaviour
         //backgroundMusic.DOFade(0.7f, 3);
 
         yield return new WaitForSeconds(5);
-        
+
 
 
         //move to face mom and Clara
         Vector3 faceTarget = clara.position - xRRig.position;
         float faceAngle = Quaternion.LookRotation(faceTarget).eulerAngles.y;
-        
-        moveToLadder.targetTransform = clara;
-        moveToLadder.rotationSpeed = 0.2f;
+        StartCoroutine(RotateToClara(faceAngle));
 
-        while (xRRig.eulerAngles.y < faceAngle - 2 || xRRig.eulerAngles.y > faceAngle + 2)
-        {
-            //Debug.Log("Mom should be rotating");
-            moveToLadder.RotateToFaceObject();
-            yield return null;
-        }
-
+        yield return new WaitForSeconds(4);
 
         //voiceover 17.1
         claraAudioSource.PlayOneShot(voiceoverClips[0]);
@@ -284,16 +278,11 @@ public class DEMOCoroutine4 : MonoBehaviour
         yield return new WaitForSeconds(voiceoverClips[0].length);
         claraTalkAnimation.isTalking = false;
 
+        breakCoroutine01 = true;
         faceTarget = orcaMom.position - xRRig.position;
         faceAngle = Quaternion.LookRotation(faceTarget).eulerAngles.y;
-        moveToLadder.targetTransform = orcaMom;
-
-        while (xRRig.eulerAngles.y < faceAngle - 2 || xRRig.eulerAngles.y > faceAngle + 2)
-        {
-            //Debug.Log("Mom should be rotating");
-            moveToLadder.RotateToFaceObject();
-            yield return null;
-        }
+        StartCoroutine(RotateToMom(faceAngle));
+        yield return new WaitForSeconds(3);
 
         //goodbye from Mom
         momAudioSource.PlayOneShot(voiceoverClips[1]);
@@ -304,19 +293,35 @@ public class DEMOCoroutine4 : MonoBehaviour
         momBubbles.Stop();
         //backgroundMusic.DOFade(0,3);
 
-        //move to zodiac ladder
+        //rotate to zodiac ladder
+
+        breakCoroutine02 = true;
         moveToLadder.targetTransform = ladderTargetTransform;
-        moveToLadder.minDistance = 0.2f;
-        moveToLadder.speed = 0.5f;
-        while (moveToLadder.distance > moveToLadder.minDistance)
+        moveToLadder.rotationSpeed = 0.2f;
+        faceTarget = moveToLadder.targetTransform.position - xRRig.position;
+        faceAngle = Quaternion.LookRotation(faceTarget).eulerAngles.y;
+
+        while (xRRig.eulerAngles.y < faceAngle - 2 || xRRig.eulerAngles.y > faceAngle + 2)
         {
-            moveToLadder.MoveToMinimumDistance();
+            moveToLadder.RotateToFaceObject();
             yield return null;
         }
 
+        //move to zodiac ladder             
+        moveToLadder.minDistance = 0.2f;
+        moveToLadder.speed = 0.75f;
+        while (moveToLadder.distance > moveToLadder.minDistance)
+        {
+            moveToLadder.MoveToMinimumDistance();
+            Debug.Log("Stuck in move loop");
+            yield return null;
+        }
+
+        moveToLadder.rotationSpeed = 0.5f;
         while (moveToLadder.transform.eulerAngles.y < moveToLadder.targetTransform.eulerAngles.y - 2 || moveToLadder.transform.eulerAngles.y > moveToLadder.targetTransform.eulerAngles.y + 2)
         {
             moveToLadder.RotateToAlign();
+            Debug.Log("Stuck in rotate loop");
             yield return null;
         }
 
@@ -329,5 +334,43 @@ public class DEMOCoroutine4 : MonoBehaviour
         rightLadderGrabPoint.SetActive(true);
 
     }
+
+    private IEnumerator RotateToClara(float faceAngle)
+    {
+        //Vector3 faceTarget = clara.position - xRRig.position;
+        //float faceAngle = Quaternion.LookRotation(faceTarget).eulerAngles.y;
+
+        moveToLadder.targetTransform = clara;
+        moveToLadder.rotationSpeed = 0.2f;
+
+        while (xRRig.eulerAngles.y < faceAngle - 2 || xRRig.eulerAngles.y > faceAngle + 2)
+        {
+            if (breakCoroutine01)
+            {
+                break;
+            }
+            moveToLadder.RotateToFaceObject();
+            yield return null;
+        }
+    }
+
+    private IEnumerator RotateToMom(float faceAngle)
+    {
+        
+
+        moveToLadder.targetTransform = orcaMom;
+
+        while (xRRig.eulerAngles.y < faceAngle - 2 || xRRig.eulerAngles.y > faceAngle + 2)
+        {
+            if (breakCoroutine02)
+            {
+                break;
+            }
+            moveToLadder.RotateToFaceObject();
+            yield return null;
+        }
+    }
+    
+    
    
 }

@@ -6,16 +6,20 @@ public class RotateCarouselAxis : MonoBehaviour
 {
     private Quaternion targetOrientation;
     public bool isRotating = true;
+    private float time = 0;
 
     
     void Update()
     {
+        
         if (isRotating)
         {
             //calculates target axis rotation at randomized interval (avoids collisions)
-            if (Random.Range(1, CarouselManager.CM.pathSensitivity) < 10)
+            time += Time.deltaTime;
+            if (time > 10)
             {
                 targetOrientation = Random.rotation;
+                time = 0;
             }
             //smoothly interpolates towards target rotation
 

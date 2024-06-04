@@ -12,8 +12,8 @@ public class DEMOCoroutine2 : MonoBehaviour
 {
     public static DEMOCoroutine2 coroutine02;
     public AudioSource backgroundMusic;
-    public AudioSource shipDroneSoundSource;
-    public AudioSource shipClangingSoundSource;
+    //public AudioSource shipDroneSoundSource;
+    //public AudioSource shipClangingSoundSource;
     public AudioClip calm;
     public AudioSource momAudioSource;
     public ParticleSystem momBubbles;
@@ -98,7 +98,7 @@ public class DEMOCoroutine2 : MonoBehaviour
 
 
         //wait a few seconds
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         //Hide charge panel
         //chargeCanvas.DOFade(0, 1);
         
@@ -274,12 +274,12 @@ public class DEMOCoroutine2 : MonoBehaviour
 
         fishingBoat.transform.SetParent(boatOceanBox, true);
         zodiac.SetActive(true);
-        shipDroneSoundSource.volume = 0;
-        shipDroneSoundSource.Play();
-        shipDroneSoundSource.DOFade(1, 15);
-        shipClangingSoundSource.volume = 0;
-        shipClangingSoundSource.Play();
-        shipClangingSoundSource.DOFade(1, 15);
+        //shipDroneSoundSource.volume = 0;
+        //shipDroneSoundSource.Play();
+        //shipDroneSoundSource.DOFade(1, 15);
+        //shipClangingSoundSource.volume = 0;
+        //shipClangingSoundSource.Play();
+        //shipClangingSoundSource.DOFade(1, 15);
 
 
         for (int i = 0; i < allOrcas.Count; i++)
@@ -417,8 +417,11 @@ public class DEMOCoroutine2 : MonoBehaviour
 
         for (int i = 0; i < groupTwoOrcas.Count; i++)
         {
-            //stop carousel rotation
+            //stop carousel rotation and change call characteristics
             groupTwoOrcas[i].GetComponent<CarouselMotion>().isCarouselFeeding = false;
+            var sounds = groupTwoOrcas[i].GetComponent<OrcaSoundController>();
+            sounds.minCallPause = 30;
+            sounds.maxCallPause = 45;
         }
 
 

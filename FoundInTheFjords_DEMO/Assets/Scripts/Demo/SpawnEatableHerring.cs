@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnEatableHerring : MonoBehaviour
@@ -12,6 +13,11 @@ public class SpawnEatableHerring : MonoBehaviour
     public float maxSpeed;
     public float minRotateSpeed;
     public float maxRotateSpeed;
+    public float minTargetX;
+    public float maxTargetX;
+    public float minTargetY;
+    public float maxTargetY;
+
     //public int numberOfSpawners;
     [SerializeField] private int count = 0;
     public bool spawnHerring = false;
